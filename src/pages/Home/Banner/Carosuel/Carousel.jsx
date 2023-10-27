@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DarkMode = () => {
+const Carousel = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const DarkMode = () => {
     );
 };
 
-export default DarkMode;
+export default Carousel;

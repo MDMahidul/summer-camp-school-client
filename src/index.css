@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .toggle_class {
+    @apply text-sm font-medium flex items-center gap-2 px-3 md:pl-3 md:pr-3.5 py-1 md:py-1.5 transition-colors relative z-10;
+  }
+  .navbar_bg{
+    @apply backdrop-blur-lg backdrop-saturate-150 dark:bg-gray-800 shadow-md ;
+  }
+}
