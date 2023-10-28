@@ -45,10 +45,10 @@ const Navbar = () => {
           <a>Home</a>
         </li>
         <li>
-          <a>Instructors</a>
+          <a>Sports</a>
         </li>
         <li>
-          <a>Classes</a>
+          <a>Instructors</a>
         </li>
         <li>
           <a>About Us</a>
@@ -56,7 +56,7 @@ const Navbar = () => {
         {user ? (
           <>
             <li>
-               <a>Dashboard</a>
+              <a>Dashboard</a>
             </li>
             <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
               <img
@@ -69,9 +69,7 @@ const Navbar = () => {
                 alt=""
               />
             </div>
-            <button
-              className="btn-sm  bg-amber-500 hover:bg-amber-600 text-white rounded"
-            >
+            <button className="btn-sm  bg-amber-500 hover:bg-amber-600 text-white rounded">
               Log Out
             </button>
           </>
@@ -100,7 +98,10 @@ const Navbar = () => {
         >
           <div className="navbar-start">
             <div className="dropdown">
-              <label tabIndex={0} className="btn btn-ghost bg-red-500 lg:hidden hover:bg-red-600">
+              <label
+                tabIndex={0}
+                className="btn btn-ghost bg-red-500 lg:hidden hover:bg-red-600"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -134,7 +135,9 @@ const Navbar = () => {
           <div className="navbar-center hidden lg:flex">
             <ul
               className={`menu menu-horizontal px-1 font-semibold ${
-                navbarBg !== "transparent" ? "text-red-500 dark:text-white" : "text-white"
+                navbarBg !== "transparent"
+                  ? "text-red-500 dark:text-white"
+                  : "text-white"
               }`}
             >
               {navOptions}
@@ -143,14 +146,14 @@ const Navbar = () => {
           <div className="navbar-end">
             <div className="dark:bg-dark  justify-center relative flex w-fit items-center rounded-full">
               <button
-                className="toggle_class text-white dark:text-slate-300"
+                className="toggle_class text-white dark:text-white"
                 onClick={() => setTheme("light")}
               >
                 <FiMoon className="relative z-10 text-lg md:text-sm" />
                 <span className="relative z-10 hidden md:block">Light</span>
               </button>
               <button
-                className="toggle_class dark:text-white text-slate-300"
+                className={`toggle_class dark:text-white  ${navbarBg !== "transparent" ? 'text-red-500':'text-red-500 md:text-white'}`}
                 onClick={() => setTheme("dark")}
               >
                 <FiSun className="relative z-10 text-lg md:text-sm" />
