@@ -28,7 +28,8 @@ const Carousel = () => {
           modules={[Autoplay, EffectCoverflow]}
         >
           <SwiperSlide>
-            <img src="https://i.ibb.co/ZWxBmcX/football.jpg" alt="football" />
+            <img src="https://i.ibb.co/ZWxBmcX/football.jpg" alt="football" className="relative"/>
+            <p className="absolute z-10 bottom-5 right-16 text-white font-semibold text-3xl">Football</p>
           </SwiperSlide>
           <SwiperSlide>
             <img src="https://i.ibb.co/ncXXSFB/cricket.jpg" alt="cricket" />

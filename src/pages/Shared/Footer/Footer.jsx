@@ -52,11 +52,11 @@ const Footer = () => {
               </p>
               <p className="flex items-center gap-1">
                 <FaPhoneAlt />
-                +88 01711 22334455
+                +88 01711-22334455
               </p>
               <p className="flex items-center gap-1">
                 <FaHeadset />
-                +88 01711 22334455
+                +88 09811-222333
               </p>
               <p className="flex items-center gap-1">
                 <FaEnvelope />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 import { FiMoon, FiSun } from "react-icons/fi";
 import logo from '../../../assets/logo/logo.png'
@@ -7,7 +7,7 @@ import useReadingProgress from '../../../hooks/useReadingProgress';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-    const user = true;
+    const user = false;
     /* for scrolling progress  */
     const completion = useReadingProgress();
     const [theme,setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -60,7 +60,7 @@ const Navbar = () => {
             </li>
             <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
               <img
-                className="w-10 rounded-full dark:border-white border-red-600 border mr-2"
+                className="w-10 rounded-full dark:border-white border-red-600 border mx-4"
                 src={
                   user.photoURL
                     ? user.photoURL
@@ -69,17 +69,17 @@ const Navbar = () => {
                 alt=""
               />
             </div>
-            <button className="btn-sm  bg-amber-500 hover:bg-amber-600 text-white rounded">
+            <button className="btn-sm ms-3 bg-amber-500 hover:bg-amber-600 text-white rounded">
               Log Out
             </button>
           </>
         ) : (
           <>
             <li>
-              <Link to="login">Login</Link>
+              <Link to="/signin">Login</Link>
             </li>
             <li>
-              <Link to="signup">Sign Up</Link>
+              <Link to="/signup">Sign Up</Link>
             </li>
           </>
         )}
@@ -88,8 +88,9 @@ const Navbar = () => {
 
     return (
       <>
+        {/* for small device */}
         <div className="md:hidden bg-red-500 flex justify-center items-center py-2">
-          <img className="w-20" src={logo} alt="" />
+          <img className="w-20" src={logo} alt="logo" />
         </div>
         <div
           className={`navbar top-0 transition-all ease-out duration-300 dark:bg-gray-800 text-white md:fixed z-50 py-3 md:px-8 ${
@@ -124,7 +125,7 @@ const Navbar = () => {
                 {navOptions}
               </ul>
             </div>
-            <a className="cursor-pointer normal-case text-xl hidden md:block">
+            <a className="cursor-pointer normal-case text-xl hidden lg:block">
               {navbarBg !== "transparent" ? (
                 <img className="w-28" src={rlogo} alt="" />
               ) : (
@@ -153,7 +154,11 @@ const Navbar = () => {
                 <span className="relative z-10 hidden md:block">Light</span>
               </button>
               <button
-                className={`toggle_class dark:text-white  ${navbarBg !== "transparent" ? 'text-red-500':'text-red-500 md:text-white'}`}
+                className={`toggle_class dark:text-white  ${
+                  navbarBg !== "transparent"
+                    ? "text-red-500"
+                    : "text-red-500 md:text-white"
+                }`}
                 onClick={() => setTheme("dark")}
               >
                 <FiSun className="relative z-10 text-lg md:text-sm" />

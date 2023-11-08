@@ -10,11 +10,11 @@ const TypingEffect = () => {
     
     return (
       <div className="text-white">
-        <h2 className="text-6xl font-bold">Northern Sports Academy</h2>
-        <h4 className="text-4xl my-5 font-semibold bg-red-500 w-4/6 rounded mx-auto py-2.5">
+        <h2 className="md:text-6xl text-4xl font-bold">Northern Sports Academy</h2>
+        <h4 className="md:text-4xl text-3xl my-5 font-semibold bg-red-500 md:w-4/6 w-11/12 rounded mx-auto py-2.5 px-1">
           Admission Going On
         </h4>
-        <div className="text-3xl font-semibold">
+        <div className="md:text-3xl text-2xl font-semibold">
           <span>{texts}</span>
           <Cursor cursorStyle="." cursorColor="white" />
         </div>
