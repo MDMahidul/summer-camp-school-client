@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useForm } from "react-hook-form";
+import AuthProvider from '../../providers/AuthProvider';
 
 const SignUp = () => {
+    /* const { createUser, updateUserProfile } = useContext(AuthProvider); */
     const [showPassword,setShowPassword] = useState(false);
     const [inputType,setInputType] = useState('password');
 
@@ -14,12 +16,12 @@ const SignUp = () => {
         setInputType(showPassword ? 'password':'text')
     }
 
-    const {
-      register,
-      handleSubmit,
-      reset,
-      formState: { errors },
-    } = useForm();
+    const {register,handleSubmit,watch,reset,formState: { errors }} = useForm();
+
+    const onSubmit=()=>{
+
+    }
+
     return (
       <div className="flex justify-center items-center min-h-screen bg-slate-200 dark:bg-gray-800 py-8">
         <div className="flex flex-col max-w-md md:w-9/12 p-6 rounded-md sm:p-10 bg-slate-100 dark:bg-slate-300 text-gray-900">
@@ -27,7 +29,7 @@ const SignUp = () => {
             <h1 className="my-3 text-4xl font-bold">Sign Up</h1>
           </div>
           <form
-            /* onSubmit={handleCreateUser} */
+            onSubmit={handleSubmit(onSubmit)}
             className="space-y-6 ng-untouched ng-pristine ng-valid"
           >
             <div className="space-y-4">
@@ -41,7 +43,13 @@ const SignUp = () => {
                   id="name"
                   placeholder="Enter Your Name"
                   className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
+                  {...register("name", { required: true })}
                 />
+                {errors.name && (
+                  <span className="text-sm text-amber-500">
+                    Name is required *
+                  </span>
+                )}
               </div>
               <div>
                 <label htmlFor="email" className="block mb-2 text-sm">
@@ -50,11 +58,16 @@ const SignUp = () => {
                 <input
                   type="email"
                   name="email"
+                  {...register("email", { required: true })}
                   id="email"
-                  required
                   placeholder="Enter Your Email"
                   className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
                 />
+                {errors.email && (
+                  <span className="text-sm text-amber-500">
+                    Email is required *
+                  </span>
+                )}
               </div>
 
               <div className="relative">
@@ -66,11 +79,22 @@ const SignUp = () => {
                 <input
                   type={inputType}
                   name="password"
+                  {...register("password", {
+                    required: "Please specify a password *",
+                    minLength: {
+                      value: 6,
+                      message: "Password Please be at least 6 digits *",
+                    },
+                  })}
                   id="password"
-                  required
                   placeholder="*******"
                   className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
                 />
+                {errors.password && (
+                  <span className="text-sm text-amber-500">
+                    {errors.password.message}
+                  </span>
+                )}
                 <div
                   className="absolute top-1/2 right-3 transform translate-y-1 cursor-pointer"
                   onClick={togglePassword}
@@ -88,11 +112,20 @@ const SignUp = () => {
                 <input
                   type={inputType}
                   name="confirmpassword"
+                  {...register("confirmpassword", {
+                    required: "Please confirm the password *",
+                    validate: (value) =>
+                      value === watch("password") || "Passwords do not match",
+                  })}
                   id="confirmpassword"
-                  required
                   placeholder="*******"
                   className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
                 />
+                {errors.confirmpassword && (
+                  <span className="text-sm text-amber-500">
+                    {errors.confirmpassword.message}
+                  </span>
+                )}
                 <div
                   className="absolute top-1/2 right-3 transform translate-y-1 cursor-pointer"
                   onClick={togglePassword}
@@ -107,13 +140,19 @@ const SignUp = () => {
                 <select
                   id="gender"
                   name="gender"
-                  {...register("gender")}
+                  {...register("gender", { required: true })}
                   className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
                 >
+                  <option value="">Select gender</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="other">Other</option>
                 </select>
+                {errors.gender && (
+                  <span className="text-sm text-amber-500">
+                    Please select a gender *
+                  </span>
+                )}
               </div>
               <div>
                 <label htmlFor="name" className="block mb-2 text-sm">
@@ -122,22 +161,34 @@ const SignUp = () => {
                 <input
                   type="text"
                   name="address"
+                  {...register("address", { required: true })}
                   id="address"
                   placeholder="Enter Your Address"
                   className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
                 />
+                {errors.address && (
+                  <span className="text-sm text-amber-500">
+                    Please enter your address *
+                  </span>
+                )}
               </div>
               <div>
                 <label htmlFor="image" className="block mb-2 text-sm">
                   Select Image:
                 </label>
                 <input
-                  required
                   type="file"
                   id="image"
                   name="image"
                   accept="image/*"
+                  {...register("image", { required: true })}
                 />
+                <br />
+                {errors.image && (
+                  <span className="text-sm text-amber-500">
+                    Please upload an image *
+                  </span>
+                )}
               </div>
             </div>
 

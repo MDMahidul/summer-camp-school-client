@@ -2,16 +2,22 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { useForm } from "react-hook-form";
 
 const SignIn = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [inputType, setInputType] = useState("password");
+
+    const {register,handleSubmit,watch,reset,formState: { errors }} = useForm();
 
     /* to toggle password input type */
     const togglePassword = () => {
       setShowPassword(!showPassword);
       setInputType(showPassword ? "password" : "text");
     };
+
+    const onSubmit = () => {};
+
     return (
       <div className="flex justify-center items-center min-h-screen dark:bg-gray-800 bg-slate-200">
         <div className="flex flex-col max-w-md md:w-9/12  p-6 rounded-md sm:p-10 dark:bg-gray-300 bg-slate-100 text-gray-900">
@@ -22,7 +28,7 @@ const SignIn = () => {
             </p>
           </div>
           <form
-            /*   onSubmit={handleSignIn} */
+            onSubmit={handleSubmit(onSubmit)}
             noValidate=""
             action=""
             className="space-y-6 ng-untouched ng-pristine ng-valid"
@@ -36,12 +42,17 @@ const SignIn = () => {
                   /* ref={emailRef} */
                   type="email"
                   name="email"
+                  {...register("email", { required: true })}
                   id="email"
-                  required
                   placeholder="Enter Your Email Here"
                   className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
                   data-temp-mail-org="0"
                 />
+                {errors.email && (
+                  <span className="text-sm text-amber-500">
+                    Please enter your email *
+                  </span>
+                )}
               </div>
               <div className="relative">
                 <div className="flex justify-between">
@@ -53,7 +64,7 @@ const SignIn = () => {
                   type={inputType}
                   name="password"
                   id="password"
-                  required
+                  {...register("password", { required: true })}
                   placeholder="*******"
                   className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
                 />
@@ -63,6 +74,11 @@ const SignIn = () => {
                 >
                   {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
                 </div>
+                {errors.password && (
+                  <span className="text-sm text-amber-500">
+                    Please enter your password *
+                  </span>
+                )}
               </div>
             </div>
 
