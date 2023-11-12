@@ -10,7 +10,7 @@
     @apply bg-white dark:bg-gray-800 shadow-md ;
     /* @apply backdrop-blur-lg backdrop-saturate-150 dark:bg-gray-800 shadow-md ; */
   }
-  .hover-on-navitem{
-    @apply bg-red-500 text-white;
+  .custom-btn{
+    @apply  transition-all hover:scale-95 hover:bg-amber-500 hover:border-amber-500 border-amber-500;
   }
 }

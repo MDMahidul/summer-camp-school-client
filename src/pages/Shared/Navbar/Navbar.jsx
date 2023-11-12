@@ -1,17 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 import { FiMoon, FiSun } from "react-icons/fi";
 import logo from '../../../assets/logo/logo.png'
 import rlogo from '../../../assets/logo/rlogo.png'
 import useReadingProgress from '../../../hooks/useReadingProgress';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const Navbar = () => {
-    const user = false;
+    const { user,logOut } = useContext(AuthContext);
     /* for scrolling progress  */
     const completion = useReadingProgress();
     const [theme,setTheme] = useState(localStorage.getItem('theme') || 'light');
     const [navbarBg,setNavbarBg] = useState('transparent');
+    const navigate = useNavigate();
 
     /* control nabar bg */
     useEffect(()=>{
@@ -69,7 +71,7 @@ const Navbar = () => {
                 alt=""
               />
             </div>
-            <button className="btn-sm ms-3 bg-amber-500 hover:bg-amber-600 text-white rounded">
+            <button onClick={()=>logOut()} className="btn-sm custom-btn ms-3 bg-amber-500  text-white rounded">
               Log Out
             </button>
           </>

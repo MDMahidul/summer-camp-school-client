@@ -1,14 +1,18 @@
 import React, { useContext, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { ImSpinner9 } from "react-icons/im";
 import { useForm } from "react-hook-form";
-import AuthProvider from '../../providers/AuthProvider';
+import AuthProvider, { AuthContext } from '../../providers/AuthProvider';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
-    /* const { createUser, updateUserProfile } = useContext(AuthProvider); */
+   const { userLogIn, loading,setLoading, resetPassword, googleSignIn } =
+     useContext(AuthContext);
     const [showPassword,setShowPassword] = useState(false);
     const [inputType,setInputType] = useState('password');
+    const navigate = useNavigate();
 
     /* to toggle password input type */
     const togglePassword=()=>{
@@ -21,6 +25,20 @@ const SignUp = () => {
     const onSubmit=()=>{
 
     }
+
+    const handleGoogleSignIn = () => {
+      googleSignIn()
+        .then((result) => {
+          console.log(result.user);
+          toast.success("Login Successfully !");
+          navigate("/");
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log(err.message);
+          toast.error(err.message);
+        });
+    };
 
     return (
       <div className="flex justify-center items-center min-h-screen bg-slate-200 dark:bg-gray-800 py-8">
@@ -96,7 +114,9 @@ const SignUp = () => {
                   </span>
                 )}
                 <div
-                  className="absolute top-1/2 right-3 transform translate-y-1 cursor-pointer"
+                  className={`absolute right-3 transform translate-y-1 cursor-pointer ${
+                    errors.password ? "top-9" : "top-1/2"
+                  }`}
                   onClick={togglePassword}
                 >
                   {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
@@ -127,7 +147,9 @@ const SignUp = () => {
                   </span>
                 )}
                 <div
-                  className="absolute top-1/2 right-3 transform translate-y-1 cursor-pointer"
+                  className={`absolute right-3 transform translate-y-1 cursor-pointer ${
+                    errors.password ? "top-9" : "top-1/2"
+                  }`}
                   onClick={togglePassword}
                 >
                   {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
@@ -195,14 +217,13 @@ const SignUp = () => {
             <div>
               <button
                 type="submit"
-                className="bg-amber-500 w-full rounded-md py-3 text-white"
+                className="custom-btn bg-amber-500 w-full rounded-md py-3 text-white"
               >
-                {/* {loading ? (
-                  <TbFidgetSpinner className="m-auto animate-spin" size={24} />
+                {loading ? (
+                  <ImSpinner9 className="m-auto animate-spin" size={24} />
                 ) : (
-                  "Continue"
-                )} */}
-                Sign Up
+                  "Sign Up"
+                )}
               </button>
             </div>
           </form>
@@ -214,7 +235,7 @@ const SignUp = () => {
             <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
           </div>
           <div
-            /*  onClick={handleGoogleSignIn} */
+             onClick={handleGoogleSignIn}
             className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
           >
             <FcGoogle size={32} />
