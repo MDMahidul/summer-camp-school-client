@@ -62,7 +62,7 @@ const Navbar = () => {
             </li>
             <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
               <img
-                className="w-10 rounded-full dark:border-white border-red-600 border mx-4"
+                className="w-14 h-14 object-cover  rounded-full dark:border-white border-red-600 border mx-4"
                 src={
                   user.photoURL
                     ? user.photoURL

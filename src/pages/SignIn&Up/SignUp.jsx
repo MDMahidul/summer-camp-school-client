@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { ImSpinner9 } from "react-icons/im";
@@ -8,11 +8,13 @@ import AuthProvider, { AuthContext } from '../../providers/AuthProvider';
 import toast from 'react-hot-toast';
 
 const SignUp = () => {
-   const { userLogIn, loading,setLoading, resetPassword, googleSignIn } =
+   const {createUser,updateUserProfile, loading,setLoading, googleSignIn } =
      useContext(AuthContext);
     const [showPassword,setShowPassword] = useState(false);
     const [inputType,setInputType] = useState('password');
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     /* to toggle password input type */
     const togglePassword=()=>{
@@ -22,16 +24,59 @@ const SignUp = () => {
 
     const {register,handleSubmit,watch,reset,formState: { errors }} = useForm();
 
-    const onSubmit=()=>{
+    //user register 
+    const onSubmit=(data)=>{
+      /* upload image to imgbb */
+      const image = data.image[0];
+      const formData = new FormData();
+      formData.append('image',image);
+      const url = `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_IMGBB_KEY
+      }`;
+      fetch(url,{
+        method:'POST',
+        body: formData
+      })
+      .then(res=>res.json())
+      .then(imageData=>{
+        const imageUrl = imageData.data.display_url;
+        console.log(imageUrl);
+        /* create user method */
+        createUser(data.email, data.password)
+          .then(result=>{
+            console.log(result.user);
+            /* update user name and iamge */
+            updateUserProfile(data.name, imageUrl)
+              .then(() => {
+                toast.success("Signup Successfully !!!");
+                navigate(from, { replace: true });
+              })
+              .catch((err) => {
+                setLoading(false);
+                console.log(err.message);
+                toast.error(err.message);
+              });
 
+          })
+          .catch((err) => {
+            setLoading(false);
+            console.log(err.message);
+            toast.error(err.message);
+          }); 
+      })
+      .catch(err=>{
+            setLoading(false);
+            console.log(err.message);
+            toast.error(err.message);
+          })
     }
 
     const handleGoogleSignIn = () => {
       googleSignIn()
         .then((result) => {
           console.log(result.user);
-          toast.success("Login Successfully !");
-          navigate("/");
+          toast.success("Login Successfully !!!");
+          navigate(from,{replace:true});
         })
         .catch((err) => {
           setLoading(false);
