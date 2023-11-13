@@ -58,7 +58,7 @@ const Navbar = () => {
         {user ? (
           <>
             <li>
-              <a>Dashboard</a>
+              <Link to='/dashboard'>Dashboard</Link>
             </li>
             <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
               <img
