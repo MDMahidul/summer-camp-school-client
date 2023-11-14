@@ -4,6 +4,7 @@ import logo from "../../../assets/logo/logo.png";
 import rlogo from "../../../assets/logo/rlogo.png";
 import { GrLogout } from "react-icons/gr";
 import { RiMenuUnfoldLine, RiMenuFoldLine } from "react-icons/ri";
+import { FaUsersCog } from "react-icons/fa";
 import { HiViewGridAdd } from "react-icons/hi";
 import { AuthContext } from "../../../providers/AuthProvider";
 
@@ -52,7 +53,9 @@ const Sidebar = () => {
         <div>
           <div>
             <div className="w-full hidden md:flex py-2 justify-center items-center mx-auto">
-              <h3 className="text-2xl font-bold bg-slate-100 px-4 py-2 rounded-md text-red-500">User Dashboard</h3>
+              <h3 className="text-2xl font-bold bg-slate-100 px-4 py-2 rounded-md text-red-500">
+                User Dashboard
+              </h3>
             </div>
             <div className="flex flex-col items-center mt-6 -mx-2">
               <Link to="/dashboard">
@@ -83,7 +86,7 @@ const Sidebar = () => {
                   </span>
                 </label>
                 <NavLink
-                  to="add-room"
+                  to="manageusers"
                   className={({ isActive }) =>
                     `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                       isActive
@@ -92,9 +95,9 @@ const Sidebar = () => {
                     }`
                   }
                 >
-                  <HiViewGridAdd className="w-5 h-5" />
+                  <FaUsersCog className="w-5 h-5" />
 
-                  <span className="mx-4 font-medium">Add Classes</span>
+                  <span className="mx-4 font-medium">Manage Users</span>
                 </NavLink>
               </>
             </nav>

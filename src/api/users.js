@@ -12,3 +12,6 @@ export const addUser = user =>{
     }).then(res=>res.json)
     .then(data=>console.log(data))
 }
+
+/* get all the user */
+/* export const getAllUsers =  */
