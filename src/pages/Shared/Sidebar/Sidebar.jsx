@@ -3,13 +3,11 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo/logo.png";
 import rlogo from "../../../assets/logo/rlogo.png";
 import { GrLogout } from "react-icons/gr";
-import { AiOutlineBars } from "react-icons/ai";
-import { BsFillHouseAddFill } from "react-icons/bs";
+import { RiMenuUnfoldLine, RiMenuFoldLine } from "react-icons/ri";
 import { HiViewGridAdd } from "react-icons/hi";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const Sidebar = () => {
-  const [toggle, setToggle] = useState(false);
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -30,7 +28,7 @@ const Sidebar = () => {
       <div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
         <div>
           <div className="block cursor-pointer p-4 font-bold">
-            <img className="w-28" src={logo} alt="" />
+            <img className="w-14" src={rlogo} alt="" />
           </div>
         </div>
 
@@ -38,20 +36,23 @@ const Sidebar = () => {
           onClick={handleToggle}
           className="mobile-menu-button p-4 focus:outline-none focus:bg-gray-200"
         >
-          <AiOutlineBars className="h-5 w-5" />
+          {isActive ? (
+            <RiMenuUnfoldLine className="h-5 w-5" />
+          ) : (
+            <RiMenuFoldLine className="h-5 w-5" />
+          )}
         </button>
       </div>
       {/* Sidebar */}
       <div
         className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-amber-200 dark:bg-gray-800 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
           isActive && "-translate-x-full"
-        }  md:translate-x-0  transition duration-200 ease-in-out`}
+        }  md:translate-x-0  transition-all duration-300 ease-in-out`}
       >
         <div>
-          {/* Branding & Profile Info */}
           <div>
             <div className="w-full hidden md:flex py-2 justify-center items-center mx-auto">
-              <img className="w-28" src={rlogo} alt="" />
+              <h3 className="text-2xl font-bold bg-slate-100 px-4 py-2 rounded-md text-red-500">User Dashboard</h3>
             </div>
             <div className="flex flex-col items-center mt-6 -mx-2">
               <Link to="/dashboard">
@@ -70,7 +71,6 @@ const Sidebar = () => {
             </div>
           </div>
 
-          {/* Nav Items */}
           <div className="flex flex-col justify-between flex-1 mt-6">
             <nav>
               <>
@@ -82,7 +82,6 @@ const Sidebar = () => {
                     Admin
                   </span>
                 </label>
-                {/* Menu Links */}
                 <NavLink
                   to="add-room"
                   className={({ isActive }) =>

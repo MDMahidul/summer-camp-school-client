@@ -58,11 +58,11 @@ const Navbar = () => {
         {user ? (
           <>
             <li>
-              <Link to='/dashboard'>Dashboard</Link>
+              <Link to="/dashboard">Dashboard</Link>
             </li>
             <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
               <img
-                className="w-14 h-14 object-cover  rounded-full dark:border-white border-red-600 border mx-4"
+                className="w-14 h-14 object-cover lg:mt-[-10px]  rounded-full dark:border-white border-red-600 border mx-4"
                 src={
                   user.photoURL
                     ? user.photoURL
@@ -71,7 +71,10 @@ const Navbar = () => {
                 alt=""
               />
             </div>
-            <button onClick={()=>logOut()} className="btn-sm custom-btn ms-3 bg-amber-500  text-white rounded">
+            <button
+              onClick={() => logOut()}
+              className="btn-sm custom-btn ms-3 bg-amber-500  text-white rounded"
+            >
               Log Out
             </button>
           </>
@@ -135,7 +138,7 @@ const Navbar = () => {
               )}
             </a>
           </div>
-          <div className="navbar-center hidden lg:flex">
+          <div className="navbar-center hidden lg:flex ">
             <ul
               className={`menu menu-horizontal px-1 font-semibold ${
                 navbarBg !== "transparent"
@@ -146,7 +149,7 @@ const Navbar = () => {
               {navOptions}
             </ul>
           </div>
-          <div className="navbar-end">
+          <div className="navbar-end lg:mt-[-10px]">
             <div className="dark:bg-dark  justify-center relative flex w-fit items-center rounded-full">
               <button
                 className="toggle_class text-white dark:text-white"

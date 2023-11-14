@@ -73,9 +73,6 @@ const SignIn = () => {
         <div className="flex flex-col max-w-md md:w-9/12  p-6 rounded-md sm:p-10 dark:bg-gray-300 bg-slate-100 text-gray-900">
           <div className="mb-8 text-center">
             <h1 className="my-3 text-4xl font-bold">Sign In</h1>
-            <p className="text-sm text-gray-400">
-              Sign in to access your account
-            </p>
           </div>
           <form
             onSubmit={handleSubmit(onSubmit)}

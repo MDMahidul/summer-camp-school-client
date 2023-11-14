@@ -6,6 +6,7 @@ import { ImSpinner9 } from "react-icons/im";
 import { useForm } from "react-hook-form";
 import AuthProvider, { AuthContext } from '../../providers/AuthProvider';
 import toast from 'react-hot-toast';
+import { addUser } from '../../api/users';
 
 const SignUp = () => {
    const {createUser,updateUserProfile, loading,setLoading, googleSignIn } =
@@ -49,6 +50,7 @@ const SignUp = () => {
             updateUserProfile(data.name, imageUrl)
               .then(() => {
                 toast.success("Signup Successfully !!!");
+                addUser(result.user);
                 navigate(from, { replace: true });
               })
               .catch((err) => {
@@ -148,6 +150,10 @@ const SignUp = () => {
                       value: 6,
                       message: "Password Please be at least 6 digits *",
                     },
+                    pattern:{
+                      value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9! @#$%^&*]+$/,
+                      message:"Password must contain at least one capital letter and special character *"
+                    }
                   })}
                   id="password"
                   placeholder="*******"
