@@ -43,7 +43,7 @@ const SignUp = () => {
         const imageUrl = imageData.data.display_url;
         console.log(imageUrl);
         /* create user method */
-        const userData={name:data.name,email:data.email,image:imageUrl,gender:data.gender,address:data.address}
+        const userData={name:data.name,email:data.email,image:imageUrl,gender:data.gender,address:data.address,role:'Student'}
         createUser(data.email, data.password)
           .then(result=>{
             console.log(result.user);
@@ -222,9 +222,9 @@ const SignUp = () => {
                   className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
                 >
                   <option value="">Select gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
                 </select>
                 {errors.gender && (
                   <span className="text-sm text-amber-500">

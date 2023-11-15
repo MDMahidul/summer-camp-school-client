@@ -1,15 +1,15 @@
-import React, {useContext, useState } from "react";
+import React, {useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo/logo.png";
 import rlogo from "../../../assets/logo/rlogo.png";
 import { GrLogout } from "react-icons/gr";
 import { RiMenuUnfoldLine, RiMenuFoldLine } from "react-icons/ri";
+import { HiViewGridAdd, HiUser } from "react-icons/hi";
 import { FaUsersCog } from "react-icons/fa";
-import { HiViewGridAdd } from "react-icons/hi";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const Sidebar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut,role } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [isActive, setActive] = useState("false");
@@ -22,6 +22,7 @@ const Sidebar = () => {
     logOut();
     navigate("/");
   };
+
 
   return (
     <>
@@ -82,15 +83,29 @@ const Sidebar = () => {
                   className="inline-flex w-full justify-center items-center px-2 rounded-md text-gray-800"
                 >
                   <span className="px-4 py-1 rounded-md bg-gray-100">
-                    Admin
+                    {role}
                   </span>
                 </label>
                 <NavLink
+                  to="userprofile"
+                  className={({ isActive }) =>
+                    `sidebar ${
+                      isActive
+                        ? "sidebar-active"
+                        : "text-gray-600 dark:text-white"
+                    }`
+                  }
+                >
+                  <HiUser className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">Profile</span>
+                </NavLink>
+                <NavLink
                   to="manageusers"
                   className={({ isActive }) =>
-                    `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    `sidebar ${
                       isActive
-                        ? "bg-gray-300  text-gray-700 dark:text-white"
+                        ? "sidebar-active"
                         : "text-gray-600 dark:text-white"
                     }`
                   }
@@ -98,6 +113,20 @@ const Sidebar = () => {
                   <FaUsersCog className="w-5 h-5" />
 
                   <span className="mx-4 font-medium">Manage Users</span>
+                </NavLink>
+                <NavLink
+                  to="manageclasses"
+                  className={({ isActive }) =>
+                    `sidebar ${
+                      isActive
+                        ? "sidebar-active"
+                        : "text-gray-600 dark:text-white"
+                    }`
+                  }
+                >
+                  <HiViewGridAdd className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">Manage Classes</span>
                 </NavLink>
               </>
             </nav>
