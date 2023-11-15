@@ -43,15 +43,20 @@ const SignUp = () => {
         const imageUrl = imageData.data.display_url;
         console.log(imageUrl);
         /* create user method */
+        const userData={name:data.name,email:data.email,image:imageUrl,gender:data.gender,address:data.address}
         createUser(data.email, data.password)
           .then(result=>{
             console.log(result.user);
             /* update user name and iamge */
             updateUserProfile(data.name, imageUrl)
               .then(() => {
-                toast.success("Signup Successfully !!!");
-                addUser(result.user);
-                navigate(from, { replace: true });
+                
+                addUser(userData)
+                  .then(data=>{
+                    console.log(data);
+                    toast.success("Signup Successfully !!!");
+                    navigate('/');
+                  })
               })
               .catch((err) => {
                 setLoading(false);
