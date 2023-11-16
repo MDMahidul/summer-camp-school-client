@@ -3,9 +3,13 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo/logo.png";
 import rlogo from "../../../assets/logo/rlogo.png";
 import { RiMenuUnfoldLine, RiMenuFoldLine } from "react-icons/ri";
-import { HiViewGridAdd, HiUser, HiHome, HiOutlineLogout } from "react-icons/hi";
+import { HiViewGridAdd, HiUser, HiHome, HiOutlineLogout,HiShoppingCart  } from "react-icons/hi";
+import { MdLibraryAddCheck } from "react-icons/md";
 import { FaUsersCog } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider";
+import AdminMenu from "../../Dashboard/Menu/AdminMenu";
+import InstructorMenu from "../../Dashboard/Menu/InstructorMenu";
+import StudentMenu from "../../Dashboard/Menu/StudentMenu";
 
 const Sidebar = () => {
   const { user, logOut,role } = useContext(AuthContext);
@@ -81,7 +85,7 @@ const Sidebar = () => {
                   htmlFor="Toggle3"
                   className="inline-flex w-full justify-center items-center px-2 rounded-md text-gray-800"
                 >
-                  <span className="px-4 py-1 rounded-md bg-gray-100">
+                  <span className="px-4 py-1 rounded-md bg-gray-100 mb-2">
                     {role}
                   </span>
                 </label>
@@ -99,34 +103,10 @@ const Sidebar = () => {
 
                   <span className="mx-4 font-medium">Profile</span>
                 </NavLink>
-                <NavLink
-                  to="manageusers"
-                  className={({ isActive }) =>
-                    `sidebar ${
-                      isActive
-                        ? "sidebar-active"
-                        : "text-gray-600 dark:text-white"
-                    }`
-                  }
-                >
-                  <FaUsersCog className="w-5 h-5" />
-
-                  <span className="mx-4 font-medium">Manage Users</span>
-                </NavLink>
-                <NavLink
-                  to="manageclasses"
-                  className={({ isActive }) =>
-                    `sidebar ${
-                      isActive
-                        ? "sidebar-active"
-                        : "text-gray-600 dark:text-white"
-                    }`
-                  }
-                >
-                  <HiViewGridAdd className="w-5 h-5" />
-
-                  <span className="mx-4 font-medium">Manage Classes</span>
-                </NavLink>
+               {role  == 'Admin' ? <AdminMenu/> :<>
+                  {role == 'Instructor' ? <InstructorMenu/> : <StudentMenu/>}
+               </>}
+                
               </>
             </nav>
           </div>
@@ -148,7 +128,7 @@ const Sidebar = () => {
           </NavLink>
           <button
             onClick={handleLogOut}
-            className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
+            className="sidebar text-gray-600 dark:text-white"
           >
             <HiOutlineLogout className="w-5 h-5" />
 

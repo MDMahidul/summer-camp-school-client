@@ -8,6 +8,14 @@ import PrivateRoute from "./PrivateRoute";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
 import UserProfile from "../pages/Dashboard/UserProfile/UserProfile";
+import SelectedClass from "../pages/Dashboard/SelectedClass/SelectedClass";
+import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
+import AddClass from "../pages/Dashboard/AddClass/AddClass";
+import MyClasses from "../pages/Dashboard/MyClasses/MyClasses";
+import InstructorRoute from "./InstructorRoute";
+import StudentRoue from "./StudentRoue";
+import AdminRoute from "./AdminRoute";
+import { Profiler } from "react";
 
 const router = createBrowserRouter([
   {
@@ -38,19 +46,63 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <ManageUsers />,
+        element: <UserProfile/>,
       },
       {
         path: "/dashboard/manageusers",
-        element: <ManageUsers />,
+        element: (
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/manageclasses",
-        element: <ManageClasses />,
+        element: (
+          <AdminRoute>
+            <ManageClasses />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/userprofile",
-        element: <UserProfile/>,
+        element: (
+          <PrivateRoute>
+            <UserProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/selectedclasses",
+        element: (
+          <StudentRoue>
+            <SelectedClass />
+          </StudentRoue>
+        ),
+      },
+      {
+        path: "/dashboard/enrolledclasses",
+        element: (
+          <StudentRoue>
+            <EnrolledClasses />
+          </StudentRoue>
+        ),
+      },
+      {
+        path: "/dashboard/addclass",
+        element: (
+          <InstructorRoute>
+            <AddClass />
+          </InstructorRoute>
+        ),
+      },
+      {
+        path: "/dashboard/myclass",
+        element: (
+          <InstructorRoute>
+            <MyClasses />
+          </InstructorRoute>
+        ),
       },
     ],
   },

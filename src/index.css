@@ -14,7 +14,7 @@
     @apply  transition-all hover:scale-95 hover:bg-amber-500 hover:border-amber-500 border-amber-500;
   }
   .sidebar{
-    @apply  flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-amber-500   hover:text-white 
+    @apply  flex items-center px-4 py-2 mt-3  transition-colors duration-300 transform  hover:bg-amber-500   hover:text-white 
   }
   .sidebar-active{
     @apply bg-gray-300  text-gray-700 dark:text-white

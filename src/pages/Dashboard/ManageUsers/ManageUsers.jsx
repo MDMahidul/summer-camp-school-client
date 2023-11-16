@@ -73,17 +73,19 @@ const ManageUsers = () => {
                     </td>
                     <td className="px-6 py-4">{user.email}</td>
                     <td className="px-6 py-4">{user?.address}</td>
-                    <td className="px-6 py-4">{!user.role ? "Student":user.role}</td>
+                    <td className="px-6 py-4">
+                      {!user.role ? "Student" : user.role}
+                    </td>
                     <td className="px-6 py-4">
                       <button
                         /*  onClick={() => handleMakeAdmin(user)} */
-                        className="btn btn-sm btn-success border-0 text-white me-2"
+                        className="text-amber-500 dark:text-white font-semibold hover:underline me-2 hover:text-amber-600"
                       >
                         Admin
                       </button>
                       <button
                         /* onClick={() => handleDelete(user)} */
-                        className="btn btn-warning border-0 text-white btn-sm"
+                        className="text-teal-500 dark:text-white font-semibold hover:underline hover:text-teal-600"
                       >
                         Instructor
                       </button>
