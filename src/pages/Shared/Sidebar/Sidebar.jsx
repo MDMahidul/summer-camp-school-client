@@ -2,9 +2,8 @@ import React, {useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo/logo.png";
 import rlogo from "../../../assets/logo/rlogo.png";
-import { GrLogout } from "react-icons/gr";
 import { RiMenuUnfoldLine, RiMenuFoldLine } from "react-icons/ri";
-import { HiViewGridAdd, HiUser } from "react-icons/hi";
+import { HiViewGridAdd, HiUser, HiHome, HiOutlineLogout } from "react-icons/hi";
 import { FaUsersCog } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider";
 
@@ -135,11 +134,23 @@ const Sidebar = () => {
 
         <div>
           <hr />
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `sidebar ${
+                isActive ? "sidebar-active" : "text-gray-600 dark:text-white"
+              }`
+            }
+          >
+            <HiHome className="w-5 h-5" />
+
+            <span className="mx-4 font-medium">Home Page</span>
+          </NavLink>
           <button
             onClick={handleLogOut}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
           >
-            <GrLogout className="w-5 h-5" />
+            <HiOutlineLogout className="w-5 h-5" />
 
             <span className="mx-4 font-medium">Logout</span>
           </button>
