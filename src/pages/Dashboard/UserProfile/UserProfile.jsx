@@ -16,7 +16,7 @@ const UserProfile = () => {
     }
   }, [user]);
   return (
-    <div className="container mx-auto px-4 sm:px-8 py-8">
+    <div className="container mx-auto px-4 sm:px-8 py-8 ">
       <DashboardHeader title={"User Profile"} />
       <div className="py-4 grid grid-cols-1 md:grid-cols-2">
         <div>
@@ -26,7 +26,7 @@ const UserProfile = () => {
           <div className="text-center text-xl font-bold text-amber-500 border-2 py-2">
             Personal Info
           </div>
-          <table className="table text-base text-gray-600 font-semibold">
+          <table className="table text-base  text-gray-600 dark:text-white font-semibold">
             <tr>
               <td>
                 <span className="border-b-2 border-amber-300">Name:</span>

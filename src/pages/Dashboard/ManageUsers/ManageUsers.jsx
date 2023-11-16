@@ -4,6 +4,8 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "react-query";
 import EmptyData from "../../../components/EmptyData/EmptyData";
+import { updateRole } from "../../../api/users";
+import toast from "react-hot-toast";
 
 const ManageUsers = () => {
   const { user, loading } = useContext(AuthContext);
@@ -20,6 +22,18 @@ const ManageUsers = () => {
       return res.data;
     },
   });
+
+  /* update user role */
+  const handleUserRole = (id,role)=>{
+    updateRole(id,role).then(data=>{
+      console.log(data);
+      toast.success('Update User Role Successfully !!!')
+      refetch();
+    }).catch(err=>{
+      console.log(err.message);
+      toast.error('Action Failed !!!')
+    })
+  }
   return (
     <>
       <div className="container mx-auto px-4 sm:px-8 py-8">
@@ -44,7 +58,7 @@ const ManageUsers = () => {
                   <th scope="col" className="px-6 py-3">
                     Role
                   </th>
-                  <th scope="col" className="px-6 py-3">
+                  <th scope="col" className="px-6 py-3 w-1/4">
                     Actions
                   </th>
                 </tr>
@@ -73,19 +87,21 @@ const ManageUsers = () => {
                     </td>
                     <td className="px-6 py-4">{user.email}</td>
                     <td className="px-6 py-4">{user?.address}</td>
-                    <td className="px-6 py-4">
-                      {!user.role ? "Student" : user.role}
-                    </td>
+                    <td className="px-6 py-4">{user?.role}</td>
                     <td className="px-6 py-4">
                       <button
-                        /*  onClick={() => handleMakeAdmin(user)} */
-                        className="text-amber-500 dark:text-white font-semibold hover:underline me-2 hover:text-amber-600"
+                        onClick={() => handleUserRole(user._id, "Admin")}
+                        className={`btn btn-sm custom-btn bg-amber-500 text-white font-semibold me-2 ${
+                          user.role === "Admin" ? "btn-disabled" : ""
+                        }`}
                       >
                         Admin
                       </button>
                       <button
-                        /* onClick={() => handleDelete(user)} */
-                        className="text-teal-500 dark:text-white font-semibold hover:underline hover:text-teal-600"
+                        onClick={() => handleUserRole(user._id, "Instructor")}
+                        className={`btn btn-sm custom-btn bg-amber-500 text-white font-semibold ${
+                          user?.role == "Instructor" ? "btn-disabled" : ""
+                        }`}
                       >
                         Instructor
                       </button>

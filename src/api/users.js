@@ -21,3 +21,15 @@ export const getUser = async (email) => {
   console.log(user);
   return user;
 };
+
+/* update user role */
+export const updateRole = (id,role)=>{
+  const currentUser = {role: role};
+  return fetch(`${import.meta.env.VITE_API_URL}/users/admin/${id}`,{
+    method:'PUT',
+    headers:{
+      'content-type':'application/json',
+    },
+    body:JSON.stringify(currentUser)
+  }).then(res=>res.json())
+}

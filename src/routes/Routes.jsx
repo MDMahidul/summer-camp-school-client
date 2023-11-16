@@ -97,7 +97,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/myclass",
+        path: "/dashboard/myclasses",
         element: (
           <InstructorRoute>
             <MyClasses />
