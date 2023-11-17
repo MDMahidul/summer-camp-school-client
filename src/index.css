@@ -19,4 +19,10 @@
   .sidebar-active{
     @apply bg-gray-300  text-gray-700 dark:text-white
   }
+  .facilities_card_img{
+        @apply block h-full w-full object-cover object-center shadow-lg transition-transform transform scale-100 group-hover:scale-105 duration-300;
+    }
+    .facilities_card_overlay{
+        @apply absolute inset-0 bg-gradient-to-t from-black to-transparent;
+    }
 }
