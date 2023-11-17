@@ -3,6 +3,9 @@ import Banner from '../Banner/Banner/Banner';
 import SportsProgrammes from '../SportsProgrammes/SportsProgrammes';
 import Facilities from '../Facilities/Facilities';
 import Testimonials from '../Testimonials/Testimonials';
+import Contact from '../Contact/Contact';
+import ScrollUp from '../../../components/ScrollUp/ScrollUp';
+import Partners from '../Partners/Partners';
 
 const Home = () => {
     return (
@@ -11,6 +14,9 @@ const Home = () => {
         <SportsProgrammes/>
         <Facilities/>
         <Testimonials/>
+        <Contact/>
+        <Partners/>
+        <ScrollUp/>
       </div>
     );
 };
