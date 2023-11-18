@@ -28,7 +28,7 @@ const AdminMenu = () => {
         >
           <HiViewGridAdd className="w-5 h-5" />
 
-          <span className="mx-4 font-medium">Manage Classes</span>
+          <span className="mx-4 font-medium">Manage Courses</span>
         </NavLink>
       </div>
     );

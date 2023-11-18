@@ -2,19 +2,22 @@ import React, { useContext, useEffect, useState } from "react";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { getUser } from "../../../api/users";
+import { useQuery } from "react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const UserProfile = () => {
-  const { user } = useContext(AuthContext);
-  const [userData, setUserData] = useState(null);
+  const { user,loading } = useContext(AuthContext);
+  const [axiosSecure] = useAxiosSecure();
 
-  useEffect(() => {
-    if (user) {
-      getUser(user.email).then((data) => {
-        console.log("role: ", data);
-        setUserData(data);
-      });
+  /* get user data */
+  const {data: userData=[],refetch} = useQuery({
+    queryKey:['userData',user?.email],
+    enabled:!loading,
+    queryFn:async()=>{
+      const res = await axiosSecure.get(`/user/${user?.email}`);
+      return res.data;
     }
-  }, [user]);
+  })
   return (
     <div className="container mx-auto px-4 sm:px-8 py-8 ">
       <DashboardHeader title={"User Profile"} />

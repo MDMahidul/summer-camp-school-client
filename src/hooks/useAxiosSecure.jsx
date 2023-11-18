@@ -7,32 +7,34 @@ import axios from 'axios';
 const axiosSecure = axios.create({baseURL: `${import.meta.env.VITE_API_URL}`})
 
 const useAxiosSecure = () => {
-    const navigate = useNavigate();
-    const {logOut} = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { logOut } = useContext(AuthContext);
 
-    useEffect(()=>{
-        /* intercept request send to server */
-        axiosSecure.interceptors.request.use(config=>{
-            const token = `Bearer ${localStorage.getItem('access-token')}`;
-            if(token){
-                config.headers.Authorization = token;
-            }
-            return config;
-        })
+  useEffect(() => {
+    axiosSecure.interceptors.request.use((config) => {
+      const token = localStorage.getItem("access-token");
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    });
 
-        /* intercept response server to client */
-        axiosSecure.interceptors.response.use(
-            response=>response,async error=>{
-                if(error.response && error.response.status === 401 || error.response.status === 403){
-                    await logOut();
-                    navigate('/signin');
-                }
-                return Promise.reject(error)
-            }
-        )
-    },[logOut,navigate])
+    axiosSecure.interceptors.response.use(
+      (response) => response,
+      async (error) => {
+        if (
+          error.response &&
+          (error.response.status === 401 || error.response.status === 403)
+        ) {
+          await logOut();
+          navigate("/login");
+        }
+        return Promise.reject(error);
+      }
+    );
+  }, [logOut, navigate]);
 
-    return [axiosSecure];
+  return [axiosSecure];
 };
 
 export default useAxiosSecure;

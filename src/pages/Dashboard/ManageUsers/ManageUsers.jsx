@@ -4,9 +4,8 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useMutation, useQuery } from "react-query";
 import EmptyData from "../../../components/EmptyData/EmptyData";
-import { updateRole } from "../../../api/users";
 import toast from "react-hot-toast";
-
+ 
 const ManageUsers = () => {
   const { user, loading } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
@@ -46,7 +45,7 @@ const ManageUsers = () => {
   const handleUserRole = (id, role) => {
     updateUserRole.mutate({ id, role });
   };
-  
+
   return (
     <>
       <div className="container mx-auto px-4 sm:px-8 py-8">

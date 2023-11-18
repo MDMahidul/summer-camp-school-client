@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
 import useAxiosSecure from './useAxiosSecure';
 import { useQuery } from 'react-query';
-
+ 
 const useAdmin = () => {
     const {user,loading} = useContext(AuthContext);
     const [axiosSecure] = useAxiosSecure();

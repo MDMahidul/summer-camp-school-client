@@ -10,10 +10,12 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import AdminMenu from "../../Dashboard/Menu/AdminMenu";
 import InstructorMenu from "../../Dashboard/Menu/InstructorMenu";
 import StudentMenu from "../../Dashboard/Menu/StudentMenu";
+import useRole from "../../../hooks/useRole";
 
 const Sidebar = () => {
-  const { user, logOut,role } = useContext(AuthContext);
+  const { user, logOut} = useContext(AuthContext);
   const navigate = useNavigate();
+  const [userData] = useRole();
 
   const [isActive, setActive] = useState("false");
   // Sidebar Responsive Handler
@@ -86,7 +88,7 @@ const Sidebar = () => {
                   className="inline-flex w-full justify-center items-center px-2 rounded-md text-gray-800"
                 >
                   <span className="px-4 py-1 rounded-md bg-gray-100 mb-2">
-                    {role}
+                    {userData.role}
                   </span>
                 </label>
                 <NavLink
@@ -103,10 +105,17 @@ const Sidebar = () => {
 
                   <span className="mx-4 font-medium">Profile</span>
                 </NavLink>
-               {role  == 'Admin' ? <AdminMenu/> :<>
-                  {role == 'Instructor' ? <InstructorMenu/> : <StudentMenu/>}
-               </>}
-                
+                {userData.role == "Admin" ? (
+                  <AdminMenu />
+                ) : (
+                  <>
+                    {userData.role == "Instructor" ? (
+                      <InstructorMenu />
+                    ) : (
+                      <StudentMenu />
+                    )}
+                  </>
+                )}
               </>
             </nav>
           </div>

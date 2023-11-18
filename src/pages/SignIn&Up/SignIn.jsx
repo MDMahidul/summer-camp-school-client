@@ -92,7 +92,7 @@ const SignIn = () => {
                   {...register("email", { required: true })}
                   id="email"
                   placeholder="Enter Your Email Here"
-                  className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
+                  className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-50 text-gray-900"
                   data-temp-mail-org="0"
                 />
                 {errors.email && (
@@ -113,7 +113,7 @@ const SignIn = () => {
                   id="password"
                   {...register("password", { required: true })}
                   placeholder="*******"
-                  className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
+                  className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-50 text-gray-900"
                 />
                 <div
                   className={`absolute right-3 transform translate-y-1 cursor-pointer ${

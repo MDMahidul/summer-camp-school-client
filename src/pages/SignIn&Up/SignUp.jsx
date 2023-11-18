@@ -112,7 +112,7 @@ const SignUp = () => {
                   name="name"
                   id="name"
                   placeholder="Enter Your Name"
-                  className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
+                  className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-50 text-gray-900"
                   {...register("name", { required: true })}
                 />
                 {errors.name && (
@@ -131,7 +131,7 @@ const SignUp = () => {
                   {...register("email", { required: true })}
                   id="email"
                   placeholder="Enter Your Email"
-                  className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
+                  className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-50 text-gray-900"
                 />
                 {errors.email && (
                   <span className="text-sm text-amber-500">
@@ -162,7 +162,7 @@ const SignUp = () => {
                   })}
                   id="password"
                   placeholder="*******"
-                  className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
+                  className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-50 text-gray-900"
                 />
                 {errors.password && (
                   <span className="text-sm text-amber-500">
@@ -195,7 +195,7 @@ const SignUp = () => {
                   })}
                   id="confirmpassword"
                   placeholder="*******"
-                  className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
+                  className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-50 text-gray-900"
                 />
                 {errors.confirmpassword && (
                   <span className="text-sm text-amber-500">
@@ -219,7 +219,7 @@ const SignUp = () => {
                   id="gender"
                   name="gender"
                   {...register("gender", { required: true })}
-                  className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
+                  className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-50 text-gray-900"
                 >
                   <option value="">Select gender</option>
                   <option value="Male">Male</option>
@@ -242,7 +242,7 @@ const SignUp = () => {
                   {...register("address", { required: true })}
                   id="address"
                   placeholder="Enter Your Address"
-                  className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-200 text-gray-900"
+                  className="w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-50 text-gray-900"
                 />
                 {errors.address && (
                   <span className="text-sm text-amber-500">

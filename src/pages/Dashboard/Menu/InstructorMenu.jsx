@@ -16,7 +16,7 @@ const InstructorMenu = () => {
         >
           <HiMiniFolderPlus className="w-5 h-5" />
 
-          <span className="mx-4 font-medium">Add Class</span>
+          <span className="mx-4 font-medium">Add Courses</span>
         </NavLink>
         <NavLink
           to="myclasses"
@@ -28,7 +28,7 @@ const InstructorMenu = () => {
         >
           <HiFolder className="w-5 h-5" />
 
-          <span className="mx-4 font-medium">My Classes</span>
+          <span className="mx-4 font-medium">My Courses</span>
         </NavLink>
       </div>
     );
