@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import EmptyData from "../../../components/EmptyData/EmptyData";
 import { updateRole } from "../../../api/users";
 import toast from "react-hot-toast";
@@ -23,17 +23,30 @@ const ManageUsers = () => {
     },
   });
 
-  /* update user role */
-  const handleUserRole = (id,role)=>{
-    updateRole(id,role).then(data=>{
-      console.log(data);
-      toast.success('Update User Role Successfully !!!')
-      refetch();
-    }).catch(err=>{
-      console.log(err.message);
-      toast.error('Action Failed !!!')
-    })
-  }
+  /* Update user role */
+  const updateUserRole = useMutation(
+    async (data) => {
+      const res = await axiosSecure.put(`/users/admin/${data.id}`, {
+        role: data.role,
+      });
+      return res.data;
+    },
+    {
+      onSuccess: () => {
+        toast.success("Update User Role Successfully !!!");
+        refetch();
+      },
+      onError: (error) => {
+        console.error(error.message);
+        toast.error("Action Failed !!!");
+      },
+    }
+  );
+
+  const handleUserRole = (id, role) => {
+    updateUserRole.mutate({ id, role });
+  };
+  
   return (
     <>
       <div className="container mx-auto px-4 sm:px-8 py-8">

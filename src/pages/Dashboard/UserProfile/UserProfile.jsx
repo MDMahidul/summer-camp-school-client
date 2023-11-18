@@ -20,7 +20,7 @@ const UserProfile = () => {
       <DashboardHeader title={"User Profile"} />
       <div className="py-4 grid grid-cols-1 md:grid-cols-2">
         <div>
-          <img className="max-w-sm md:max-w-md" src={userData?.image} alt="" />
+          <img className="max-w-sm h-[70vh] md:max-w-md" src={userData?.image} alt="" />
         </div>
         <div>
           <div className="text-center text-xl font-bold text-amber-500 border-2 py-2">

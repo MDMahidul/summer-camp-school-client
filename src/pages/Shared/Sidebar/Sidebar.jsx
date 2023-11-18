@@ -128,7 +128,7 @@ const Sidebar = () => {
           </NavLink>
           <button
             onClick={handleLogOut}
-            className="sidebar text-gray-600 dark:text-white"
+            className="w-full sidebar text-gray-600 dark:text-white"
           >
             <HiOutlineLogout className="w-5 h-5" />
 
