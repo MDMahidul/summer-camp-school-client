@@ -4,8 +4,9 @@ import { FiMoon, FiSun } from "react-icons/fi";
 import logo from '../../../assets/logo/logo.png'
 import rlogo from '../../../assets/logo/rlogo.png'
 import useReadingProgress from '../../../hooks/useReadingProgress';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
+import ActiveLink from '../../../components/ActiveLink/ActiveLink';
 
 const Navbar = ({ isHomePage }) => {
   const { user, logOut } = useContext(AuthContext);
@@ -13,7 +14,6 @@ const Navbar = ({ isHomePage }) => {
   const completion = useReadingProgress();
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [navbarBg, setNavbarBg] = useState("transparent");
-  const navigate = useNavigate();
 
   /* control nabar bg */
   useEffect(() => {
@@ -43,16 +43,16 @@ const Navbar = ({ isHomePage }) => {
   const navOptions = (
     <>
       <li>
-        <Link to='/'>Home</Link>
+        <ActiveLink to='/'>Home</ActiveLink>
       </li>
       <li>
-        <a>Sports</a>
+        <ActiveLink to='/courses'>Courses</ActiveLink>
       </li>
       <li>
-        <Link to="/instructors">Instructors</Link>
+        <ActiveLink to="/instructors">Instructors</ActiveLink>
       </li>
       <li>
-        <a>About Us</a>
+        <ActiveLink to='/aboutus'>About Us</ActiveLink>
       </li>
       {user ? (
         <>
@@ -82,9 +82,9 @@ const Navbar = ({ isHomePage }) => {
           <li>
             <Link to="/signin">Login</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/signup">Sign Up</Link>
-          </li>
+          </li> */}
         </>
       )}
     </>

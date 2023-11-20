@@ -35,7 +35,8 @@ const MyClasses = () => {
                     <th>Course Price</th>
                     <th>Total Seats</th>
                     <th>Enrolled</th>
-                    <th className="w-1/4">Status</th>
+                    <th>Status</th>
+                    <th>Feedback</th>
                   </tr>
                 </thead>
                 <tbody className="text-gray-600 dark:text-white">
@@ -70,6 +71,7 @@ const MyClasses = () => {
                           {course?.status}
                         </span>
                       </td>
+                      <td>{course.feedback}</td>
                     </tr>
                   ))}
                 </tbody>
