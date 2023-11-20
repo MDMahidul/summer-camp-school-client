@@ -6,6 +6,7 @@ import Testimonials from '../Testimonials/Testimonials';
 import Contact from '../Contact/Contact';
 import ScrollUp from '../../../components/ScrollUp/ScrollUp';
 import Partners from '../Partners/Partners';
+import InstructorsList from '../Instructor/InstructorsList';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
         <Banner/>
         <SportsProgrammes/>
         <Facilities/>
+        <InstructorsList/>
         <Testimonials/>
         <Contact/>
         <Partners/>

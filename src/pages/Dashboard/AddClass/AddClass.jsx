@@ -33,15 +33,16 @@ const AddClass = () => {
           instructor_name: data.instructor_name,
           email: data.email,
           seats: data.seats,
-          price: data.price,
+          price:  parseFloat(data.price),
           description: data.description,
           enrolled:0,
-          status:'Pending'
+          status:'Pending',
+          feedback:''
         };
         axiosSecure.post('/course',courseData).then(data=>{
           if(data.data.insertedId){
             toast.success('Course Added Successfully !!!');
-            navigate("dashboard/myclasses");
+            navigate("/myclasses");
             reset()
           }else{
             toast.error('Something went wrong !!!');

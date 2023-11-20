@@ -15,7 +15,7 @@ const MyClasses = () => {
     enabled:!loading,
     queryFn:async()=>{
       const res = await axiosSecure.get(
-        `/courses/${user?.email}`
+        `/course/${user?.email}`
       );
       console.log(res.data.length);
       return res.data;
@@ -27,50 +27,35 @@ const MyClasses = () => {
         <>
           {courses && Array.isArray(courses) && courses.length > 0 ? (
             <div className="overflow-x-auto mt-3">
-              <table className="w-full text-base text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <table className="table">
+                <thead className="text-base text-gray-700 dark:text-white">
                   <tr>
-                    <th scope="col" className="p-4">
-                      SL
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Name
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Course Price
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Total Seats
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Enrolled
-                    </th>
-                    <th scope="col" className="px-6 py-3 w-1/4">
-                      Status
-                    </th>
+                    <th>SL</th>
+                    <th>Name</th>
+                    <th>Course Price</th>
+                    <th>Total Seats</th>
+                    <th>Enrolled</th>
+                    <th className="w-1/4">Status</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="text-gray-600 dark:text-white">
                   {courses.map((course, index) => (
                     <tr key={course._id} className="border-gray-300">
                       <th
                         scope="row"
-                        className=" px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                        className=" px-6 py-4 text-gray-700 whitespace-nowrap dark:text-white"
                       >
                         {index + 1}
                       </th>
-                      <td
-                        scope="row"
-                        className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
-                      >
+                      <td>
                         <div>
                           <div className="">{course.course_name}</div>
                         </div>
                       </td>
-                      <td className="px-6 py-4">{course.price} $</td>
-                      <td className="px-6 py-4">{course?.seats}</td>
-                      <td className="px-6 py-4">{course?.enrolled}</td>
-                      <td className="px-6 py-4">
+                      <td>{course.price} $</td>
+                      <td>{course?.seats}</td>
+                      <td>{course?.enrolled}</td>
+                      <td>
                         <span
                           className={`${
                             course?.status === "Pending"

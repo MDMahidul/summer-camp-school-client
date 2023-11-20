@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import { AuthContext } from "../../../providers/AuthProvider";
-import { getUser } from "../../../api/users";
 import { useQuery } from "react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
@@ -61,7 +60,7 @@ const UserProfile = () => {
               <td>{userData?.address}</td>
             </tr>
           </table>
-          <div className="text-center py-4">
+          <div className="text-center py-4 mt-5">
             <button className="btn custom-btn bg-amber-500  text-white custom-btn">
               Update Info
             </button>

@@ -15,7 +15,8 @@ const ManageUsers = () => {
     queryKey: ["users", user?.email],
     enabled: !loading,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users/${user?.emial}`);
+      const res = await axiosSecure.get(`/users`);
+      console.log("user email:",user?.email);
       console.log(res.data);
 
       return res.data;
@@ -52,49 +53,39 @@ const ManageUsers = () => {
         <DashboardHeader title={"Users List"} />
         {users && Array.isArray(users) && users.length > 0 ? (
           <div className="overflow-x-auto mt-3">
-            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <table className="table">
+              <thead className="text-base text-gray-700 dark:text-white">
                 <tr>
-                  <th scope="col" className="p-4">
-                    SL
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Name
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Email
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Address
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Role
-                  </th>
-                  <th scope="col" className="px-6 py-3 w-1/4">
-                    Actions
-                  </th>
+                  <th>SL</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th>Role</th>
+                  <th className="w-1/4">Actions</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="text-gray-600 dark:text-white">
                 {users.map((user, index) => (
                   <tr key={user._id} className="border-gray-300">
                     <th
                       scope="row"
-                      className=" px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                      className=" px-6 py-4 text-gray-700 whitespace-nowrap dark:text-white"
                     >
                       {index + 1}
-                    </th>
-                    <td
-                      scope="row"
-                      className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      <img
-                        className="w-10 h-10 rounded-full"
-                        src={user?.image}
-                        alt="Jese image"
-                      />
-                      <div className="ps-3">
-                        <div className="">{user.name}</div>
+                    </th> 
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <div className="avatar">
+                          <div className="mask mask-squircle w-12 h-12">
+                            <img
+                              src={user.image}
+                              alt="Avatar Tailwind CSS Component"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="font-semibold">{user.name}</div>
+                        </div>
                       </div>
                     </td>
                     <td className="px-6 py-4">{user.email}</td>

@@ -18,6 +18,5 @@ export const addUser = async (user) => {
 export const getUser = async (email) => {
   const response = await fetch(`${import.meta.env.VITE_API_URL}/user/${email}`);
   const user = await response.json();
-  console.log(user);
   return user;
 };

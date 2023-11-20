@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Container from "../../../Components/Container/Container";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 // Import Swiper styles
@@ -9,6 +8,7 @@ import TestimonialCard from "./TestimonialCard";
 import "./Testimonials.css";
 import SectionHeader from "../../../components/SectionHeader/SectionHeader";
 import FadeInAnimation from "../../../components/FadeInAnimation/FadeInAnimation";
+import Container from "../../../components/Container/Container";
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);

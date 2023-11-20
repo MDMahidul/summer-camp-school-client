@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaUsersCog } from 'react-icons/fa';
 import { HiViewGridAdd } from 'react-icons/hi';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const AdminMenu = () => {
+  const {user} = useContext(AuthContext);
     return (
       <div>
         <NavLink

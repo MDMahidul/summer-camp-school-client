@@ -15,7 +15,9 @@ import MyClasses from "../pages/Dashboard/MyClasses/MyClasses";
 import InstructorRoute from "./InstructorRoute";
 import StudentRoue from "./StudentRoue";
 import AdminRoute from "./AdminRoute";
-import { Profiler } from "react";
+import InstructorsPage from "../pages/InstructorsPage/InstructorsPage";
+import InstructorDetails from "../pages/InstructorsPage/InstructorDetails";
+import { getUser } from "../api/users";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,15 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "instructors",
+        element: <InstructorsPage />,
+      },
+      {
+        path: "user/:email",
+        element: <InstructorDetails />,
+        loader: ({ params }) => getUser(params.email),
       },
     ],
   },
@@ -46,7 +57,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <UserProfile/>,
+        element: <UserProfile />,
       },
       {
         path: "/dashboard/manageusers",
