@@ -21,11 +21,13 @@ import { getUser } from "../api/users";
 import CoursesPage from "../pages/CoursesPage/CoursesPage";
 import CourseDetails from "../pages/CoursesPage/CourseDetails";
 import { getCourse } from "../api/courses";
+import ErrorPage from "../components/Error/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement:<ErrorPage/>,
     children: [
       {
         path: "/",
