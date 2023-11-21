@@ -1,10 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
 import Container from '../../components/Container/Container';
 import SectionHeader from '../../components/SectionHeader/SectionHeader';
 import FadeInAnimation from '../../components/FadeInAnimation/FadeInAnimation';
+import ScrollPageTop from '../../components/ScrollPageTop/ScrollPageTop';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const InstructorDetails = () => {
+  const {role} = useContext(AuthContext);
+  //console.log(role);
   const instructorData = useLoaderData();
   const [courses, setCourses] = useState([]);
 
@@ -20,7 +24,8 @@ const InstructorDetails = () => {
 
   return (
     <div className="dark:bg-gray-800 pb-10 lg:pb-20 md:pt-20" id="instructors">
-      <SectionHeader heading={"Istructor Details"}></SectionHeader>
+      <ScrollPageTop />
+      <SectionHeader heading={"Instructor Details"}></SectionHeader>
       <Container>
         <FadeInAnimation>
           <div className="flex flex-col md:flex-row justify-evenly items-center md:mt-2 gap-10">
@@ -66,62 +71,74 @@ const InstructorDetails = () => {
             </p>
           </FadeInAnimation>
           <FadeInAnimation>
-            <div className="overflow-x-auto mt-3">
-              <table className="table">
-                <thead className="text-base text-gray-700 dark:text-white">
-                  <tr>
-                    <th>SL</th>
-                    <th>Course</th>
-                    <th> Instructor Name</th>
-                    <th>Available Seats</th>
-                    <th>Total Enrolled</th>
-                    <th>Price</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="text-gray-600 dark:text-white">
-                  {courses.map((course, index) => (
-                    <tr key={course._id} className="border-gray-300">
-                      <th>{index + 1}</th>
-                      <td
-                        scope="row"
-                        className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
-                      >
-                        <div className="flex items-center gap-3">
-                          <div className="avatar">
-                            <div className="mask mask-squircle w-12 h-12">
-                              <img
-                                src={course.image}
-                                alt="Avatar Tailwind CSS Component"
-                              />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="font-semibold">
-                              {course.course_name}
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">{course?.instructor_name}</td>
-                      <td className="px-6 py-4">
-                        {course?.seats - course?.enrolled}
-                      </td>
-                      <td className="px-6 py-4">{course?.enrolled}</td>
-                      <td className="px-6 py-4">{course?.price}</td>
-                      <td className="px-6 py-4">
-                        <button
-                          className={`btn btn-sm hover:bg-green-600 hover:border-green-600 transition-all hover:scale-95 border-green-500 bg-green-500 text-white font-semibold me-2`}
-                          disabled={course?.seats - course?.enrolled <= 0}
-                        >
-                          Add To Cart
-                        </button>
-                      </td>
+            {courses && Array.isArray(courses) && courses.length > 0 ? (
+              <div className="overflow-x-auto mt-3">
+                <table className="table">
+                  <thead className="text-base text-gray-700 dark:text-white">
+                    <tr>
+                      <th>SL</th>
+                      <th>Course</th>
+                      <th> Instructor Name</th>
+                      <th>Available Seats</th>
+                      <th>Total Enrolled</th>
+                      <th>Price</th>
+                      <th>Actions</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody className="text-gray-600 dark:text-white">
+                    {courses.map((course, index) => (
+                      <tr key={course._id} className="border-gray-300">
+                        <th>{index + 1}</th>
+                        <td
+                          scope="row"
+                          className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="avatar">
+                              <div className="mask mask-squircle w-12 h-12">
+                                <img
+                                  src={course.image}
+                                  alt="Avatar Tailwind CSS Component"
+                                />
+                              </div>
+                            </div>
+                            <div>
+                              <div className="font-semibold hover:text-amber-500">
+                                <Link to={`/course/details/${course?._id}`}>
+                                  {course.course_name}
+                                </Link>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">{course?.instructor_name}</td>
+                        <td className="px-6 py-4">
+                          {course?.seats - course?.enrolled}
+                        </td>
+                        <td className="px-6 py-4">{course?.enrolled}</td>
+                        <td className="px-6 py-4">{course?.price}</td>
+                        <td className="px-6 py-4">
+                          <button
+                            className={`btn btn-sm hover:bg-green-600 hover:border-green-600 transition-all hover:scale-95 border-green-500 bg-green-500 text-white font-semibold me-2`}
+                            disabled={
+                              course?.seats - course?.enrolled <= 0 ||
+                              role === "Admin" ||
+                              role === "Instructor"
+                            }
+                          >
+                            Add To Cart
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <p className="text-center text-xl">
+                No course found for this Instructor
+              </p>
+            )}
           </FadeInAnimation>
         </div>
       </Container>

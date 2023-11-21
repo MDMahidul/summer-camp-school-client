@@ -20,3 +20,10 @@ export const getUser = async (email) => {
   const user = await response.json();
   return user;
 };
+
+/* get all the instructors data */
+export const getInstructor = async () => {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/instructors`);
+  const instructors = await response.json();
+  return instructors;
+};

@@ -133,7 +133,7 @@ const Navbar = ({ isHomePage }) => {
               {navOptions}
             </ul>
           </div>
-          <a className="cursor-pointer normal-case text-xl hidden lg:block">
+          <Link to='/' className="cursor-pointer normal-case text-xl hidden lg:block">
             {navbarBg !== "transparent" ? (
               <img className="w-28" src={rlogo} alt="" />
             ) : !isHomePage ? (
@@ -141,7 +141,7 @@ const Navbar = ({ isHomePage }) => {
             ) : (
               <img className="w-28" src={logo} alt="" />
             )}
-          </a>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex ">
           <ul

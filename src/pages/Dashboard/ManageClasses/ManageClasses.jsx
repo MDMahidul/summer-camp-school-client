@@ -12,11 +12,11 @@ const ManageClasses = () => {
   const [feedback, setFeedback] = useState("");
   const [selectedCourse, setSelectedCourse] = useState(null);
 
-  /* get all user data */
+  /* get all course data */
   const { data: courses = [], refetch } = useQuery({
     enabled: !loading,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/courses`);
+      const res = await axiosSecure.get(`/courses/admin`);
       console.log(res.data);
 
       return res.data;

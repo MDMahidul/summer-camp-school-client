@@ -18,6 +18,9 @@ import AdminRoute from "./AdminRoute";
 import InstructorsPage from "../pages/InstructorsPage/InstructorsPage";
 import InstructorDetails from "../pages/InstructorsPage/InstructorDetails";
 import { getUser } from "../api/users";
+import CoursesPage from "../pages/CoursesPage/CoursesPage";
+import CourseDetails from "../pages/CoursesPage/CourseDetails";
+import { getCourse } from "../api/courses";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +30,15 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "courses",
+        element: <CoursesPage />,
+      },
+      {
+        path: "course/details/:id",
+        element: <CourseDetails />,
+        loader: ({ params }) => getCourse(params.id),
       },
       {
         path: "instructors",

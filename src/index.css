@@ -34,4 +34,13 @@
     .add-class-label{
       @apply block mb-2 text-sm font-medium text-gray-800 dark:text-white
     }
+     .card_effect{
+        @apply transform transition-all ease-in duration-300
+    }
+    .p_des{
+      @apply font-medium ;
+    }
+    .span_label{
+      @apply font-semibold text-amber-500 dark:text-white text-base;
+    }
 }
