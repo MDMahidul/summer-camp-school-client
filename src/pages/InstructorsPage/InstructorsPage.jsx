@@ -19,14 +19,17 @@ const InstructorsPage = () => {
     },[])
 
     return (
-      <div className="dark:bg-gray-800 pb-10 lg:pb-20 mt-20" id="instructors">
+      <div
+        className="dark:bg-gray-800 pb-10 lg:pb-20 md:pt-20"
+        id="instructors"
+      >
         <ScrollPageTop />
         <Container>
           <SectionHeader heading={"Our Instructors"}></SectionHeader>
           {instructors &&
           Array.isArray(instructors) &&
           instructors.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-3  md:gap-10 lg:gap-7 gap-5 ">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
               {instructors.map((instructor, index) => (
                 <FadeInAnimation key={instructor._id} custom={index}>
                   <div className="card card-compact max-w-md  shadow-xl">

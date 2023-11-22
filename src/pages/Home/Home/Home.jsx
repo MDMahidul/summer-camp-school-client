@@ -8,6 +8,7 @@ import Partners from '../Partners/Partners';
 import InstructorsList from '../Instructor/InstructorsList';
 import ScrollPageTop from '../../../components/ScrollPageTop/ScrollPageTop';
 import Courses from '../Courses/Courses';
+import About from '../About/About';
 
 const Home = () => {
     return (
@@ -17,6 +18,7 @@ const Home = () => {
         <Courses/>
         <Facilities/>
         <InstructorsList/>
+        <About/>
         <Testimonials/>
         <Contact/>
         <Partners/>

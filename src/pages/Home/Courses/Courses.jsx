@@ -31,7 +31,7 @@ const Courses = () => {
           ))}
         </div>
         <FadeInAnimation custom={1}>
-          <div className="text-center">
+          <div className="text-center pb-10 md:pb-0">
               <Link to="/courses"
                 className="btn bg-amber-500 hover:bg-amber-600 mt-8 text-white border-0 transition-transform transform hover:scale-95"
               >

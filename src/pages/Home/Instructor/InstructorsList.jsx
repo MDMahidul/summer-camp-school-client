@@ -23,7 +23,7 @@ const InstructorsList = () => {
     <div className="dark:bg-gray-800 pb-10 lg:pb-20" id="instructors">
       <Container>
         <SectionHeader heading={"Our Instructors"}></SectionHeader>
-        <div className="grid grid-cols-1 md:grid-cols-3  md:gap-10 lg:gap-7 gap-5 ">
+        <div className="grid grid-cols-1 md:grid-cols-3  md:gap-10 lg:gap-7 gap-y-10 gap-x-5">
           {visibleInstructors.map((instructor, index) => (
             <FadeInAnimation key={instructor.id} custom={index}>
               <InstructorCard instructor={instructor}></InstructorCard>

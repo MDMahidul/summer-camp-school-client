@@ -20,9 +20,13 @@ const UserProfile = () => {
   return (
     <div className="container mx-auto px-4 sm:px-8 py-8 ">
       <DashboardHeader title={"User Profile"} />
-      <div className="py-4 grid grid-cols-1 md:grid-cols-2">
+      <div className="py-4 flex flex-col md:flex-row gap-5 xl:gap-10 justify-evenly items-center">
         <div>
-          <img className="max-w-sm h-[70vh] md:max-w-md" src={userData?.image} alt="" />
+          <img
+            className="xs:max-w-[300px] md:max-w-md lg:max-w-sm lg:h-[55vh] xl:max-w-lg xl:h-[60vh] "
+            src={userData?.image}
+            alt=""
+          />
         </div>
         <div>
           <div className="text-center text-xl font-bold text-amber-500 border-2 py-2">

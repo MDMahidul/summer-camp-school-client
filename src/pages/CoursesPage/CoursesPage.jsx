@@ -18,7 +18,7 @@ const CoursesPage = () => {
     },
   });
   return (
-    <div className="dark:bg-gray-800 pb-10 lg:pb-20 mt-20" id="courses">
+    <div className="dark:bg-gray-800 pb-10 lg:pb-20 md:pt-20" id="courses">
       <ScrollPageTop />
       <Container>
         <SectionHeader heading={"Our Courses"}></SectionHeader>

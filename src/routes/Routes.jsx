@@ -22,6 +22,7 @@ import CoursesPage from "../pages/CoursesPage/CoursesPage";
 import CourseDetails from "../pages/CoursesPage/CourseDetails";
 import { getCourse } from "../api/courses";
 import ErrorPage from "../components/Error/ErrorPage";
+import AboutUs from "../pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
         element: <InstructorDetails />,
         loader: ({ params }) => getUser(params.email),
       },
+      {
+        path:'aboutus',
+        element:<AboutUs/>
+      }
     ],
   },
   {
