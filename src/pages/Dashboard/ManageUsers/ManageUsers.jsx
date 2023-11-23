@@ -26,7 +26,7 @@ const ManageUsers = () => {
   /* Update user role */
   const updateUserRole = useMutation(
     async (data) => {
-      const res = await axiosSecure.put(`/users/admin/${data.id}`, {
+      const res = await axiosSecure.patch(`/users/admin/${data.id}`, {
         role: data.role,
       });
       return res.data;

@@ -1,12 +1,16 @@
-import { useContext} from "react";
+import { useContext, useState} from "react";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useQuery } from "react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { ImSpinner9 } from "react-icons/im";
+import UpdateProfileModal from "./UpdateProfileModal";
 
 const UserProfile = () => {
-  const { user,loading } = useContext(AuthContext);
+  const { user,loading} = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
+  const[isEditModalOpen, setIsEditModalOpen] = useState(false);
+  
 
   /* get user data */
   const {data: userData=[],refetch} = useQuery({
@@ -17,6 +21,7 @@ const UserProfile = () => {
       return res.data;
     }
   })
+
   return (
     <div className="container mx-auto px-4 sm:px-8 py-8 ">
       <DashboardHeader title={"User Profile"} />
@@ -29,45 +34,63 @@ const UserProfile = () => {
           />
         </div>
         <div>
-          <div className="text-center text-xl font-bold text-amber-500 border-2 py-2">
+          <div className="text-center text-xl font-bold text-amber-500 border-2 py-2.5">
             Personal Info
           </div>
           <table className="table text-base  text-gray-600 dark:text-white font-semibold">
-            <tr>
-              <td>
-                <span className="border-b-2 border-amber-300">Name:</span>
-              </td>
-              <td>{userData?.name}</td>
-            </tr>
-            <tr>
-              <td>
-                <span className="border-b-2 border-amber-300">Gender:</span>
-              </td>
-              <td>{userData?.gender}</td>
-            </tr>
-            <tr>
-              <td>
-                <span className="border-b-2 border-amber-300">Email:</span>
-              </td>
-              <td>{userData?.email}</td>
-            </tr>
-            <tr>
-              <td>
-                <span className="border-b-2 border-amber-300">Role:</span>
-              </td>
-              <td>{userData?.role}</td>
-            </tr>
-            <tr>
-              <td>
-                <span className="border-b-2 border-amber-300">Address:</span>
-              </td>
-              <td>{userData?.address}</td>
-            </tr>
+            <tbody>
+              <tr className="border-b-0">
+                <td className="py-2.5">
+                  <span className="border-b-2 border-amber-300">Name:</span>
+                </td>
+                <td className="py-2.5">{userData?.name}</td>
+              </tr>
+              <tr className="border-b-0">
+                <td className="py-2.5">
+                  <span className="border-b-2 border-amber-300">Gender:</span>
+                </td>
+                <td className="py-2.5">{userData?.gender}</td>
+              </tr>
+              <tr className="border-b-0">
+                <td className="py-2.5">
+                  <span className="border-b-2 border-amber-300">Email:</span>
+                </td>
+                <td className="py-2.5">{userData?.email}</td>
+              </tr>
+              <tr className="border-b-0">
+                <td className="py-2.5">
+                  <span className="border-b-2 border-amber-300">Phone:</span>
+                </td>
+                <td className="py-2.5">{userData?.phone}</td>
+              </tr>
+              <tr className="border-b-0">
+                <td className="py-2.5">
+                  <span className="border-b-2 border-amber-300">Role:</span>
+                </td>
+                <td className="py-2.5">{userData?.role}</td>
+              </tr>
+              <tr className="border-b-0">
+                <td className="py-2.5">
+                  <span className="border-b-2 border-amber-300">Address:</span>
+                </td>
+                <td className="py-2.5">{userData?.address}</td>
+              </tr>
+            </tbody>
           </table>
-          <div className="text-center py-4 mt-5">
-            <button className="btn custom-btn bg-amber-500  text-white custom-btn">
+          <div className="text-center py-5">
+            <button
+              onClick={() => setIsEditModalOpen(true)}
+              className="btn custom-btn bg-amber-500  text-white custom-btn"
+            >
               Update Info
             </button>
+            <UpdateProfileModal
+              isOpen={isEditModalOpen}
+              setIsEditModalOpen={setIsEditModalOpen}
+              user={userData}
+              refetch={refetch}
+              id={userData._id}
+            />
           </div>
         </div>
       </div>

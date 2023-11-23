@@ -23,10 +23,10 @@ const ManageClasses = () => {
     },
   });
 
-  /* Update user role */
+  /* Update course status */
   const updateCourseStatus = useMutation(
     async ({id,status}) => {
-      const res = await axiosSecure.put(`/course/admin/${id}`, {
+      const res = await axiosSecure.patch(`/course/admin/${id}`, {
         status,
         feedback
       });
@@ -146,11 +146,11 @@ const ManageClasses = () => {
                 <h3 className="text-lg font-bold">
                   Do you want to deny this course?
                 </h3>
-                <p className="py-4 text-sm">Give a feedback...(optional)</p>
+                <p className="py-4 text-sm">Give a feedback...</p>
                 <textarea
                   value={feedback}
                   onChange={(e) => setFeedback(e.target.value)}
-                  placeholder="Send a feedback"
+                  placeholder="Send a feedback (optional)"
                   className="textarea textarea-bordered bg-gray-100 textarea-xs w-full focus:outline-none"
                   rows={3}
                 ></textarea>

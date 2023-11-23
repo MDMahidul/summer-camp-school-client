@@ -27,3 +27,18 @@ export const getInstructor = async () => {
   const instructors = await response.json();
   return instructors;
 };
+
+/* update user data */
+export const updateUserInfo = async (userData, id) => {
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/user/${id}`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${localStorage.getItem('access-token')}`
+    },
+    body: JSON.stringify(userData),
+  });
+
+  const data = await response.json();
+  return data;
+};

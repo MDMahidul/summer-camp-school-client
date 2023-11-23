@@ -43,6 +43,9 @@
   .span_label {
     @apply font-semibold text-amber-500 dark:text-white text-base;
   }
+  .input_field{
+    @apply w-full px-3 py-2 border rounded-md border-amber-500 focus:outline-none bg-gray-50 text-gray-900;
+  }
 
   /* for error page */
   @keyframes bounce {
