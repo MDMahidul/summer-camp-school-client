@@ -11,7 +11,6 @@ const UpdateProfileModal = ({ setIsEditModalOpen, isOpen, refetch, user, id }) =
   useEffect(() => {
     setuserData(user);
   }, [user]);
-  console.log(userData);
 
   const handleImageUpdate = (image) => {
     setLoading(true);
@@ -36,7 +35,7 @@ const UpdateProfileModal = ({ setIsEditModalOpen, isOpen, refetch, user, id }) =
       .then((data) => {
         console.log(data);
         if (data.modifiedCount > 0) {
-          toast.success("User info updated");
+          toast.success("User Data Updated!!!");
           setLoading(false);
           refetch();
           setIsEditModalOpen(false);

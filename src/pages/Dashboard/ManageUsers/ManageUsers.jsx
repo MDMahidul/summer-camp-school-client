@@ -94,7 +94,7 @@ const ManageUsers = () => {
                     <td className="px-6 py-4">
                       <button
                         onClick={() => handleUserRole(user._id, "Admin")}
-                        className={`btn btn-sm custom-btn bg-amber-500 text-white font-semibold me-2 ${
+                        className={`btn btn-xs custom-btn bg-amber-500 text-white font-semibold me-2 ${
                           user.role === "Admin" ? "btn-disabled" : ""
                         }`}
                       >
@@ -102,7 +102,7 @@ const ManageUsers = () => {
                       </button>
                       <button
                         onClick={() => handleUserRole(user._id, "Instructor")}
-                        className={`btn btn-sm custom-btn bg-amber-500 text-white font-semibold ${
+                        className={`btn btn-xs custom-btn bg-amber-500 text-white font-semibold ${
                           user?.role == "Instructor" ? "btn-disabled" : ""
                         }`}
                       >

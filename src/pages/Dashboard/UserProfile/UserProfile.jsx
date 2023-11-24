@@ -10,7 +10,6 @@ const UserProfile = () => {
   const { user,loading} = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
   const[isEditModalOpen, setIsEditModalOpen] = useState(false);
-  
 
   /* get user data */
   const {data: userData=[],refetch} = useQuery({

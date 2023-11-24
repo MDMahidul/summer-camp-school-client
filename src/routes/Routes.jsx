@@ -23,12 +23,13 @@ import CourseDetails from "../pages/CoursesPage/CourseDetails";
 import { getCourse } from "../api/courses";
 import ErrorPage from "../components/Error/ErrorPage";
 import AboutUs from "../pages/AboutUs/AboutUs";
+import MyClassDetails from "../pages/Dashboard/MyClasses/MyClassDetails";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
-    errorElement:<ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -53,9 +54,9 @@ const router = createBrowserRouter([
         loader: ({ params }) => getUser(params.email),
       },
       {
-        path:'aboutus',
-        element:<AboutUs/>
-      }
+        path: "aboutus",
+        element: <AboutUs />,
+      },
     ],
   },
   {
@@ -133,6 +134,10 @@ const router = createBrowserRouter([
             <MyClasses />
           </InstructorRoute>
         ),
+      },
+      {
+        path: "/dashboard/myclasses/:id",
+        element: <MyClassDetails />,
       },
     ],
   },

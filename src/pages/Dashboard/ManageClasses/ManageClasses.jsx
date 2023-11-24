@@ -119,7 +119,7 @@ const ManageClasses = () => {
                             onClick={() =>
                               handleCourseStatus(course._id, "Approved")
                             }
-                            className={`btn btn-sm hover:bg-green-600 hover:border-green-600 transition-all hover:scale-95 border-green-500 bg-green-500 text-white font-semibold me-2`}
+                            className={`btn btn-xs hover:bg-green-600 hover:border-green-600 transition-all hover:scale-95 border-green-500 bg-green-500 text-white font-semibold me-2`}
                           >
                             Approve
                           </button>
@@ -127,7 +127,7 @@ const ManageClasses = () => {
                             onClick={() =>
                               handleCourseStatus(course._id, "Denied")
                             }
-                            className={`btn btn-sm hover:bg-red-600 hover:border-red-600 transition-all hover:scale-95 border-red-500 bg-red-500 text-white font-semibold`}
+                            className={`btn btn-xs hover:bg-red-600 hover:border-red-600 transition-all hover:scale-95 border-red-500 bg-red-500 text-white font-semibold`}
                           >
                             Deny
                           </label>
@@ -150,9 +150,10 @@ const ManageClasses = () => {
                 <textarea
                   value={feedback}
                   onChange={(e) => setFeedback(e.target.value)}
-                  placeholder="Send a feedback (optional)"
+                  placeholder="Send a feedback (optional - 30 letters)"
                   className="textarea textarea-bordered bg-gray-100 textarea-xs w-full focus:outline-none"
                   rows={3}
+                  maxLength={50}
                 ></textarea>
                 <button
                   onClick={handleDenySubmit}
