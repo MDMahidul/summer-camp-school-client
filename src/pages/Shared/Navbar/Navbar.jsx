@@ -1,19 +1,23 @@
 import { useContext, useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 import { FiMoon, FiSun } from "react-icons/fi";
+import { FaCartShopping } from "react-icons/fa6";
 import logo from '../../../assets/logo/logo.png'
 import rlogo from '../../../assets/logo/rlogo.png'
 import useReadingProgress from '../../../hooks/useReadingProgress';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import ActiveLink from '../../../components/ActiveLink/ActiveLink';
+import useCart from '../../../hooks/useCart';
 
 const Navbar = ({ isHomePage }) => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user,role, logOut } = useContext(AuthContext);
   /* for scrolling progress  */
   const completion = useReadingProgress();
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [navbarBg, setNavbarBg] = useState("transparent");
+  const [cart] = useCart();
+  console.log(cart);
 
   /* control nabar bg */
   useEffect(() => {
@@ -43,22 +47,34 @@ const Navbar = ({ isHomePage }) => {
   const navOptions = (
     <>
       <li>
-        <ActiveLink to='/'>Home</ActiveLink>
+        <ActiveLink to="/">Home</ActiveLink>
       </li>
       <li>
-        <ActiveLink to='/courses'>Courses</ActiveLink>
+        <ActiveLink to="/courses">Courses</ActiveLink>
       </li>
       <li>
         <ActiveLink to="/instructors">Instructors</ActiveLink>
       </li>
       <li>
-        <ActiveLink to='/aboutus'>About Us</ActiveLink>
+        <ActiveLink to="/aboutus">About Us</ActiveLink>
       </li>
       {user ? (
         <>
           <li>
             <Link to="/dashboard">Dashboard</Link>
           </li>
+          {role === "Student" && (
+            <>
+              <li>
+                <Link to="/dashboard/selectedclasses">
+                  <FaCartShopping className="text-xl" />
+                  <div className="bg-amber-500 px-1 rounded-md text-white absolute -top-1 right-0.5">
+                    {cart?.length || 0}
+                  </div>
+                </Link>
+              </li>
+            </>
+          )}
           <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
             <img
               className="w-14 h-14 object-cover lg:mt-[-10px]  rounded-full dark:border-white border-red-600 border mx-4"

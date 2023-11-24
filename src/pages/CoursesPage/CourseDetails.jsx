@@ -1,14 +1,55 @@
 import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import ScrollPageTop from '../../components/ScrollPageTop/ScrollPageTop';
 import Container from '../../Components/Container/Container';
 import SectionHeader from '../../components/SectionHeader/SectionHeader';
 import FadeInAnimation from '../../components/FadeInAnimation/FadeInAnimation';
 import { AuthContext } from '../../providers/AuthProvider';
+import toast from 'react-hot-toast';
+import useCart from '../../hooks/useCart';
 
 const CourseDetails = () => {
-    const { role } = useContext(AuthContext);
+    const {user, role } = useContext(AuthContext);
     const course = useLoaderData();
+    const navigate=useNavigate();
+    const location = useLocation();
+    const [cart,refetch] = useCart();
+
+    /* check if the course is already in the cart or not */
+    const isCourseInCart = cart.some((item) => item.courseName === course.course_name);
+
+    /* add to cart  */
+    const handleAddToCart = (course)=>{
+      if(user && user?.email){
+        const cardtData = {
+          courseId: course._id,
+          courseName: course.course_name,
+          image:course.image,
+          price:course.price,
+          email:user?.email,
+          instructorName: course?.instructor_name,
+          instructorEmail: course?.email
+        }
+        fetch(`${import.meta.env.VITE_API_URL}/carts`,{
+          method:'POST',
+          headers:{
+            "content-type":"application/json",
+          },
+          body:JSON.stringify(cardtData),
+        }).then(res=>res.json())
+        .then(data=>{
+          if(data.insertedId){
+            refetch();
+            toast.success('Course Added To Cart Successfully!!!')
+          }
+        }).catch(error=>{
+          toast.error(error.message)
+        })
+      }else{
+        toast.error('Please Login First!!!');
+        navigate("/signin",{state:{from:location}});
+      }
+    }
     return (
       <div
         className="dark:bg-gray-800 pb-10 lg:pb-20 md:pt-20"
@@ -56,8 +97,10 @@ const CourseDetails = () => {
                   disabled={
                     course?.seats - course?.enrolled <= 0 ||
                     role === "Admin" ||
-                    role === "Instructor"
+                    role === "Instructor" ||
+                    isCourseInCart
                   }
+                  onClick={() => handleAddToCart(course)}
                 >
                   Add To Cart
                 </button>
