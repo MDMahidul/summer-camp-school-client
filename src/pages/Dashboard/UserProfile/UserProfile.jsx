@@ -79,7 +79,7 @@ const UserProfile = () => {
           <div className="text-center py-5">
             <button
               onClick={() => setIsEditModalOpen(true)}
-              className="btn custom-btn bg-amber-500  text-white custom-btn"
+              className="btn w-full custom-btn bg-amber-500  text-white custom-btn"
             >
               Update Info
             </button>

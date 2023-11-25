@@ -8,14 +8,22 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { deleteCourse } from "../../../api/courses";
 import toast from "react-hot-toast";
+import DeleteModal from "../../../components/Modal/DeleteModal";
 
 const MyClassDetails = () => {
     const {user} = useContext(AuthContext);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const course_id = useParams();
-  console.log(course_id);
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    const course_id = useParams();
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    let [isOpen, setIsOpen] = useState(false);
+
+    function openModal() {
+      setIsOpen(true);
+    }
+    function closeModal() {
+      setIsOpen(false);
+    }
 
   const { data: course = [], refetch } = useQuery({
     queryKey: ["course", course_id],
@@ -104,7 +112,7 @@ const MyClassDetails = () => {
               <div className="flex justify-cente items-center gap-5">
                 <button
                   onClick={() => setIsEditModalOpen(true)}
-                  className="btn bg-amber-500 text-white custom-btn"
+                  className="px-10 btn bg-amber-500 text-white custom-btn"
                 >
                   Update
                 </button>
@@ -117,7 +125,18 @@ const MyClassDetails = () => {
                   setLoading={setLoading}
                   refetch={refetch}
                 />
-                <button onClick={()=>handleDelete(course._id)} className="btn btn-error transition-all duration-300 hover:bg-red-500 hover:scale-95 text-white">Delete</button>
+                <button
+                  onClick={openModal}
+                  className="px-10 btn btn-error transition-all duration-300 hover:bg-red-500 hover:scale-95 text-white"
+                >
+                  Delete
+                </button>
+                <DeleteModal
+                  isOpen={isOpen}
+                  closeModal={closeModal}
+                  modalHandler={handleDelete}
+                  id={course._id}
+                />
               </div>
             )}
           </div>

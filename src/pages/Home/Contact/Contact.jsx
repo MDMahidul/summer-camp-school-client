@@ -61,7 +61,7 @@ const Contact = () => {
                   placeholder="Write your message"
                 ></textarea>
               </div>
-              <button className=" bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 px-4 rounded-lg transition-transform transform duration-300 hover:scale-95">
+              <button className="btn bg-white text-amber-500 border-white hover:border-white hover:bg-gray-100 transition-all duration-200 hover:scale-95">
                 Submit
               </button>
             </form>

@@ -5,6 +5,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery } from 'react-query';
 import EmptyData from '../../../components/EmptyData/EmptyData';
 import MyClassesRow from './MyClassesRow';
+import { Link } from 'react-router-dom';
 
 const MyClasses = () => {
   const {user,loading} = useContext(AuthContext);
@@ -44,13 +45,28 @@ const MyClasses = () => {
                 </thead>
                 <tbody className="text-gray-600 dark:text-white">
                   {courses.map((course, index) => (
-                    <MyClassesRow key={course._id} refetch={refetch} course={course} index={index}/>
+                    <MyClassesRow
+                      key={course._id}
+                      refetch={refetch}
+                      course={course}
+                      index={index}
+                    />
                   ))}
                 </tbody>
               </table>
             </div>
           ) : (
-            <EmptyData message={"No course data found"} />
+            <>
+              <EmptyData message={"No course data found"} />
+              <div className="text-center -mt-52 md:-mt-40">
+                <Link
+                  className="btn bg-amber-500 text-white custom-btn"
+                  to="/dashboard/addclass"
+                >
+                  Add Course
+                </Link>
+              </div>
+            </>
           )}
         </>
       </div>

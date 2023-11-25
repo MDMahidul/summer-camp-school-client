@@ -33,7 +33,7 @@ const InstructorsList = () => {
         <FadeInAnimation custom={1}>
           <div className="text-center">
               <Link to='/instructors'
-                className="btn bg-amber-500 hover:bg-amber-600 mt-8 text-white border-0 transition-transform transform hover:scale-95"
+                className="btn bg-amber-500 mt-8 text-white custom-btn"
               >
                 See More
               </Link>
