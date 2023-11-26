@@ -51,7 +51,7 @@ const SelectedClass = () => {
                     <div className="font-semibold md:font-bold text-xl mb-2">
                       Total Price: <span className="text-amber-500">{totalPrice}$</span>
                     </div>
-                    <button className='btn btn-sm w-full custom-btn bg-amber-500 text-white'>Checkout</button>
+                    <Link to='/dashboard/payment' className='btn btn-sm w-full custom-btn bg-amber-500 text-white'>Checkout</Link>
                   </div>
                 </div>
                 <div className="overflow-x-auto mt-3">

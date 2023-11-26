@@ -46,7 +46,7 @@ const CourseDetails = () => {
           toast.error(error.message)
         })
       }else{
-        toast.error('Please Login First!!!');
+        toast.error('Please Sign In First!!!');
         navigate("/signin",{state:{from:location}});
       }
     }

@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
+    "@stripe/react-stripe-js": "^2.4.0",
+    "@stripe/stripe-js": "^2.2.0",
     "axios": "^1.6.1",
     "daisyui": "^3.9.2",
     "firebase": "^10.4.0",

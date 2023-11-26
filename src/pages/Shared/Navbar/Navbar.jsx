@@ -68,7 +68,7 @@ const Navbar = ({ isHomePage }) => {
               <li>
                 <Link to="/dashboard/selectedclasses">
                   <FaCartShopping className="text-xl" />
-                  <div className="bg-amber-500 px-1 rounded-md text-white absolute -top-1 right-0.5">
+                  <div className="bg-amber-500 px-1.5 rounded-md text-white absolute -top-1 right-0">
                     {cart?.length || 0}
                   </div>
                 </Link>
@@ -96,7 +96,7 @@ const Navbar = ({ isHomePage }) => {
       ) : (
         <>
           <li>
-            <Link to="/signin">Login</Link>
+            <Link to="/signin">Sign in</Link>
           </li>
           {/* <li>
             <Link to="/signup">Sign Up</Link>

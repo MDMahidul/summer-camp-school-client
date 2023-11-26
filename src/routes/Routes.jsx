@@ -24,6 +24,7 @@ import { getCourse } from "../api/courses";
 import ErrorPage from "../components/Error/ErrorPage";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import MyClassDetails from "../pages/Dashboard/MyClasses/MyClassDetails";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -108,6 +109,14 @@ const router = createBrowserRouter([
         element: (
           <StudentRoue>
             <SelectedClass />
+          </StudentRoue>
+        ),
+      },
+      {
+        path: "/dashboard/payment",
+        element: (
+          <StudentRoue>
+            <Payment />
           </StudentRoue>
         ),
       },
