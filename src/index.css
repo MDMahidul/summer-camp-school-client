@@ -20,7 +20,7 @@
     @apply flex items-center px-4 py-2 mt-3  transition-colors duration-300 transform  hover:bg-amber-500   hover:text-white;
   }
   .sidebar-active {
-    @apply bg-gray-300  text-gray-700 dark:text-white;
+    @apply bg-gray-300  text-gray-700 dark:text-amber-500 dark:hover:text-white;
   }
   .facilities_card_img {
     @apply block h-full w-full object-cover object-center shadow-lg transition-transform transform scale-100 group-hover:scale-105 duration-300;

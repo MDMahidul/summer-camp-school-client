@@ -17,7 +17,6 @@ const Navbar = ({ isHomePage }) => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const [navbarBg, setNavbarBg] = useState("transparent");
   const [cart] = useCart();
-  console.log(cart);
 
   /* control nabar bg */
   useEffect(() => {

@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 
 const SelectedClass = () => {
   const [cart,refetch] = useCart();
-  const totalPrice = cart.reduce((sum,item)=>item.price + sum,0); 
+  const totalPrice = parseFloat(cart.reduce((sum,item)=>item.price + sum,0)).toFixed(2); 
   
   let [isOpen, setIsOpen] = useState(false);
 
