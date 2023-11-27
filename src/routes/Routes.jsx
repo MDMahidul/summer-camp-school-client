@@ -25,6 +25,7 @@ import ErrorPage from "../components/Error/ErrorPage";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import MyClassDetails from "../pages/Dashboard/MyClasses/MyClassDetails";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import ClassEnrolled from "../pages/Dashboard/ManageClasses/ClassEnrolled";
 
 const router = createBrowserRouter([
   {
@@ -93,6 +94,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageClasses />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/classenrolled/:id",
+        element: (
+          <AdminRoute>
+            <ClassEnrolled />
           </AdminRoute>
         ),
       },

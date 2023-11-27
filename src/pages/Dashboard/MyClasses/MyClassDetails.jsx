@@ -34,12 +34,11 @@ const MyClassDetails = () => {
           `${
             import.meta.env.VITE_API_URL
           }/course/instructor/details/${course_id.id}`
-        );
+        )
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        console.log(data);
         return data;
       } catch (error) {
         console.error("Error fetching course details:", error);

@@ -76,14 +76,24 @@ const CheckoutForm = ({ totalPrice, cart,refetch }) => {
         setTransactionId(paymentIntent.id);
         /* save data to db */
         const payment = {
-          email: user?.email,
-          transactionId,
+          userInfo: {
+            email: user?.email,
+            name: user?.displayName,
+          },
+          transactionId: paymentIntent.id,
           totalPrice,
           date: new Date(),
           itemsQuantity: cart.length,
-          cartItemsID: cart.map((item) => item._id),
-          courseItemsID: cart.map((item) => item.courseId),
-          itemsName: cart.map((item) => item.courseName),
+          cartItemID: cart.map((item) => item._id),
+          /* courseItemsID: cart.map((item) => item.courseId),
+          itemsName: cart.map((item) => item.courseName), */
+          items: cart.map((item) => ({
+            courseItemID: item.courseId, // Corrected property name
+            itemsName: item.courseName,
+            itemsImage: item.image,
+            Instructor: item.instructorName,
+            InstructorEmail: item.email,
+          })),
         };
         axiosSecure.post("/payment",payment)
         .then(res=>{

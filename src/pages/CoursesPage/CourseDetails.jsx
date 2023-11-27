@@ -7,16 +7,21 @@ import FadeInAnimation from '../../components/FadeInAnimation/FadeInAnimation';
 import { AuthContext } from '../../providers/AuthProvider';
 import toast from 'react-hot-toast';
 import useCart from '../../hooks/useCart';
+import usePayment from '../../hooks/usePayment';
 
 const CourseDetails = () => {
     const {user, role } = useContext(AuthContext);
     const course = useLoaderData();
+    const [payments] = usePayment();
     const navigate=useNavigate();
     const location = useLocation();
     const [cart,refetch] = useCart();
 
     /* check if the course is already in the cart or not */
     const isCourseInCart = cart.some((item) => item.courseName === course.course_name);
+    const isCourseEnrolled = payments.some((payment) =>
+      payment.items.some((item) => item.itemsName === course.course_name)
+    );
 
     /* add to cart  */
     const handleAddToCart = (course)=>{
@@ -67,7 +72,12 @@ const CourseDetails = () => {
               />
               <div className="text-gray-700 dark:text-white max-w-xl flex flex-col gap-1">
                 <p className="md:text-3xl text-xl font-semibold">
-                  {course.course_name}
+                  {course.course_name}{" "}
+                  {isCourseEnrolled && (
+                    <span className="text-sm font-bold text-amber-500">
+                      (Enrolled)
+                    </span>
+                  )}
                 </p>
                 <p className="p_des">
                   <span className="span_label">Instructor: </span>
@@ -92,18 +102,21 @@ const CourseDetails = () => {
                   <span className="span_label">Description:</span>{" "}
                   {course?.description}
                 </p>
-                <button
-                  className={`btn custom-btn transition-all hover:scale-95 text-white mt-5 bg-amber-500`}
-                  disabled={
-                    course?.seats - course?.enrolled <= 0 ||
-                    role === "Admin" ||
-                    role === "Instructor" ||
-                    isCourseInCart
-                  }
-                  onClick={() => handleAddToCart(course)}
-                >
-                  Add To Cart
-                </button>
+                {!isCourseEnrolled && (
+                  <button
+                    className={`btn custom-btn transition-all hover:scale-95 text-white mt-5 bg-amber-500`}
+                    disabled={
+                      course?.seats - course?.enrolled <= 0 ||
+                      role === "Admin" ||
+                      role === "Instructor" ||
+                      isCourseInCart ||
+                      isCourseEnrolled
+                    }
+                    onClick={() => handleAddToCart(course)}
+                  >
+                    Add To Cart
+                  </button>
+                )}
               </div>
             </div>
           </FadeInAnimation>

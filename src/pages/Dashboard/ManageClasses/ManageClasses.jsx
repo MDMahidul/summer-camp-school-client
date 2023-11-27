@@ -5,6 +5,7 @@ import { AuthContext } from '../../../providers/AuthProvider';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useMutation, useQuery } from 'react-query';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 const ManageClasses = () => {
   const { user, loading } = useContext(AuthContext);
@@ -80,6 +81,7 @@ const ManageClasses = () => {
                   <th> Email </th>
                   <th> Seats </th>
                   <th> Price </th>
+                  <th> Enrolled </th>
                   <th className="w-1/4"> Actions </th>
                 </tr>
               </thead>
@@ -107,6 +109,7 @@ const ManageClasses = () => {
                     <td className="px-6 py-4">{course?.instructor_name}</td>
                     <td className="px-6 py-4">{course?.email}</td>
                     <td className="px-6 py-4">{course?.seats}</td>
+                    <td className="px-6 py-4">{course?.enrolled}</td>
                     <td className="px-6 py-4">{course?.price} $</td>
                     <td className="px-6 py-4">
                       {course.status == "Approved" ? (
