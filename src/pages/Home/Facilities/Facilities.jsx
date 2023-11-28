@@ -111,7 +111,7 @@ const Facilities = () => {
                   alt="gallery"
                   loading="lazy"
                   className="facilities_card_img"
-                  src="https://levelfyc.com/wp-content/uploads/2021/09/lou-3803.jpg"
+                  src="https://static.vecteezy.com/system/resources/previews/022/995/013/non_2x/modern-gym-interior-with-sport-and-fitness-equipment-fitness-center-inteior-inteior-of-crossfit-and-workout-gym-generative-ai-photo.jpg"
                 />
                 <div className="facilities_card_overlay"></div>
                 <div className="absolute inset-0 text-white p-3 top-2/4 lg:top-2/4 md:top-3/4">

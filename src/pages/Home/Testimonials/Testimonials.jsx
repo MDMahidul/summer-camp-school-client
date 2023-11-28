@@ -20,7 +20,7 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <div className="dark:bg-gray-700  pb-10 lg:pb-20">
+    <div className="dark:bg-gray-800  pb-10 lg:pb-20">
       <SectionHeader heading={"Testimonials"}></SectionHeader>
       <Container>
         <Swiper

@@ -16,11 +16,17 @@ const Payment = () => {
         return (
           <div className="container mx-auto px-4 sm:px-8 py-8">
             <DashboardHeader title={"Make Payment"} />
-            <FadeInAnimation>
-              <Elements stripe={stripePromise}>
-                <CheckoutForm refetch={refetch} cart={cart} totalPrice={totalPrice} />
-              </Elements>
-            </FadeInAnimation>
+            <div className='mt-10'>
+              <FadeInAnimation>
+                <Elements stripe={stripePromise}>
+                  <CheckoutForm
+                    refetch={refetch}
+                    cart={cart}
+                    totalPrice={totalPrice}
+                  />
+                </Elements>
+              </FadeInAnimation>
+            </div>
           </div>
         );
 };

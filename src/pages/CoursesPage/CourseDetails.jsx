@@ -8,7 +8,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 import toast from 'react-hot-toast';
 import useCart from '../../hooks/useCart';
 import usePayment from '../../hooks/usePayment';
-
+ 
 const CourseDetails = () => {
     const {user, role } = useContext(AuthContext);
     const course = useLoaderData();
@@ -96,7 +96,7 @@ const CourseDetails = () => {
                   {course?.enrolled}
                 </p>
                 <p className="p_des">
-                  <span className="span_label">Price:</span> {course?.price}
+                  <span className="span_label">Price:</span> {course?.price}$
                 </p>
                 <p className="p_des">
                   <span className="span_label">Description:</span>{" "}

@@ -33,11 +33,11 @@ const SelectedClass = () => {
         toast.error(error.message);
       })
   }
-
+ 
     return (
       <>
         <div className="container mx-auto px-4 sm:px-8 py-8">
-          <DashboardHeader title={"My Selected Classes"} />
+          <DashboardHeader title={"My Selected Courses"} />
           <>
             {cart && Array.isArray(cart) && cart.length > 0 ? (
               <>

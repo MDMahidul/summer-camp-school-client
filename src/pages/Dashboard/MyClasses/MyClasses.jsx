@@ -26,7 +26,7 @@ const MyClasses = () => {
   })
     return (
       <div className="container mx-auto px-4 sm:px-8 py-8">
-        <DashboardHeader title={"My Classes"} />
+        <DashboardHeader title={"My Courses"} />
         <>
           {courses && Array.isArray(courses) && courses.length > 0 ? (
             <div className="overflow-x-auto mt-3">

@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 const CheckoutForm = ({ totalPrice, cart,refetch }) => {
   console.log(totalPrice);
   const { user } = useContext(AuthContext);
+  console.log(user);
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
@@ -79,6 +80,7 @@ const CheckoutForm = ({ totalPrice, cart,refetch }) => {
           userInfo: {
             email: user?.email,
             name: user?.displayName,
+            userImage: user?.photoURL,
           },
           transactionId: paymentIntent.id,
           totalPrice,

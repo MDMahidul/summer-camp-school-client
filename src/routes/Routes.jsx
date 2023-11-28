@@ -104,6 +104,7 @@ const router = createBrowserRouter([
             <ClassEnrolled />
           </AdminRoute>
         ),
+        loader: ({ params }) => getCourse(params.id),
       },
       {
         path: "/dashboard/userprofile",

@@ -14,7 +14,7 @@ const Partners = () => {
             })
         },[])
   return (
-    <div className="dark:bg-gray-700  pb-10 lg:pb-20">
+    <div className="dark:bg-gray-800  pb-10 lg:pb-20">
       <SectionHeader heading={"Our Partners"}></SectionHeader>
       <Container>
         <div className="flex justify-center items-center flex-wrap gap-10 mt-8 p-4">

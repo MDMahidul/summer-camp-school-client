@@ -80,9 +80,9 @@ const ManageClasses = () => {
                   <th> Instructor Name </th>
                   <th> Email </th>
                   <th> Seats </th>
-                  <th> Price </th>
                   <th> Enrolled </th>
-                  <th className="w-1/4"> Actions </th>
+                  <th> Price </th>
+                  <th className="w-1/4"> Actions/Status </th>
                 </tr>
               </thead>
               <tbody className="text-gray-600 dark:text-white">
@@ -113,7 +113,17 @@ const ManageClasses = () => {
                     <td className="px-6 py-4">{course?.price} $</td>
                     <td className="px-6 py-4">
                       {course.status == "Approved" ? (
-                        <p className="text-green-500 font-semibold">Approved</p>
+                        <>
+                          <p className="text-green-500 font-semibold">
+                            Approved
+                          </p>
+                          <Link
+                            to={`/dashboard/classenrolled/${course._id}`}
+                            className="btn btn-outline btn-warning btn-xs mt-1 custom-btn"
+                          >
+                            Enrolled Students
+                          </Link>
+                        </>
                       ) : course.status == "Denied" ? (
                         <p className="text-red-500 font-semibold">Denied</p>
                       ) : (

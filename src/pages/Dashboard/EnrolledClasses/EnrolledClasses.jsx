@@ -10,7 +10,7 @@ const EnrolledClasses = () => {
     return (
       <>
         <div className="container mx-auto px-4 sm:px-8 py-8">
-          <DashboardHeader title={"My Enrolled Classes"} />
+          <DashboardHeader title={"My Enrolled Courses"} />
           {payments && Array.isArray(payments) && payments.length > 0 ? (
             <div className="overflow-x-auto mt-3">
               <table className="table">

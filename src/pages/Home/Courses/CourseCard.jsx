@@ -1,9 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const CourseCard = ({course}) => {
-    const { _id,course_name,image,seats,enrolled } = course;
-    return (
+const CourseCard = ({ course }) => {
+  const { _id, course_name, image, seats, enrolled } = course;
+  return (
+    <Link to={`/course/details/${course?._id}`}>
       <div className="relative max-w-96 h-96 bg-cover bg-center bg-no-repeat hover:shadow-xl transition-transform transform  hover:bg-black hover:bg-opacity-70 group rounded-xl">
         <div
           className="absolute inset-0 w-full h-full rounded-xl bg-cover bg-center bg-no-repeat"
@@ -27,7 +28,8 @@ const CourseCard = ({course}) => {
           </Link>
         </div>
       </div>
-    );
+    </Link>
+  );
 };
 
 export default CourseCard;
