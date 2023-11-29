@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useTypewriter,Cursor } from "react-simple-typewriter";
 
 const TypingEffect = () => {
@@ -25,9 +26,9 @@ const TypingEffect = () => {
           academic support, both of which are individually personalised to meet
           your unique needs and aspirations. Because your goals are ours too.
         </p>
-        <button className="btn custom-btn bg-transparent border-2  text-white px-5  ">
+        <Link to='/aboutus' className="btn custom-btn bg-transparent border-2  text-white px-5  ">
           Learn More
-        </button>
+        </Link>
       </div>
     );
 };

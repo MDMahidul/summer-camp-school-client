@@ -109,7 +109,9 @@ const Navbar = ({ isHomePage }) => {
     <>
       {/* for small device */}
       <div className="md:hidden bg-red-500 flex justify-center items-center py-2">
-        <img className="w-20" src={logo} alt="logo" />
+        <Link to='/'>
+          <img className="w-20" src={logo} alt="logo" />
+        </Link>
       </div>
       <div
         className={`navbar top-0 transition-all ease-out duration-300 dark:bg-gray-800 text-white md:fixed z-50 py-3 md:px-8 ${
@@ -141,6 +143,7 @@ const Navbar = ({ isHomePage }) => {
                 />
               </svg>
             </label>
+
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-red-500 dark:bg-gray-700 rounded-box w-52"
@@ -148,7 +151,11 @@ const Navbar = ({ isHomePage }) => {
               {navOptions}
             </ul>
           </div>
-          <Link to='/' className="cursor-pointer normal-case text-xl hidden lg:block">
+
+          <Link
+            to="/"
+            className="cursor-pointer normal-case text-xl hidden lg:block"
+          >
             {navbarBg !== "transparent" ? (
               <img className="w-28" src={rlogo} alt="" />
             ) : !isHomePage ? (
@@ -158,9 +165,9 @@ const Navbar = ({ isHomePage }) => {
             )}
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex ">
+        <div className="navbar-center ">
           <ul
-            className={`menu menu-horizontal px-1 font-semibold ${
+            className={`menu menu-horizontal px-1 font-semibold hidden lg:flex  ${
               navbarBg !== "transparent"
                 ? "text-red-500 dark:text-white"
                 : !isHomePage
@@ -170,6 +177,16 @@ const Navbar = ({ isHomePage }) => {
           >
             {navOptions}
           </ul>
+          {role === "Student" && (
+            <div className="md:hidden relative">
+              <Link to="/dashboard/selectedclasses">
+                <FaCartShopping className="text-3xl text-red-500 " />
+                <div className="bg-amber-500 px-1.5 rounded-md text-white absolute -top-3 -right-4">
+                  {cart?.length || 0}
+                </div>
+              </Link>
+            </div>
+          )}
         </div>
         <div className="navbar-end lg:mt-[-10px]">
           <div className="dark:bg-dark  justify-center relative flex w-fit items-center rounded-full">

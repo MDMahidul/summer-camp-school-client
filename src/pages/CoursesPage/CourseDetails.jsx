@@ -8,6 +8,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 import toast from 'react-hot-toast';
 import useCart from '../../hooks/useCart';
 import usePayment from '../../hooks/usePayment';
+import { Helmet } from 'react-helmet-async';
  
 const CourseDetails = () => {
     const {user, role } = useContext(AuthContext);
@@ -60,6 +61,9 @@ const CourseDetails = () => {
         className="dark:bg-gray-800 pb-10 lg:pb-20 md:pt-20"
         id="instructors"
       >
+        <Helmet>
+          <title>{course?.course_name}</title>
+        </Helmet>
         <ScrollPageTop />
         <Container>
           <SectionHeader heading={"Course Details"}></SectionHeader>

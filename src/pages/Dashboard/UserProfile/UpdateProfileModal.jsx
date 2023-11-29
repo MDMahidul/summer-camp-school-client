@@ -134,6 +134,7 @@ const UpdateProfileModal = ({ setIsEditModalOpen, isOpen, refetch, user, id }) =
                             name="phone"
                             id="phone"
                             type="text"
+                            maxLength={11}
                             placeholder="01XXXXXXXXX"
                             required
                           />

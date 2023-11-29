@@ -8,6 +8,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import { addUser } from "../../api/users";
 import { imageUp } from "../../api/image";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const { createUser, updateUserProfile, loading, setLoading, googleSignIn } =
@@ -97,6 +98,9 @@ const SignUp = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-slate-200 dark:bg-gray-800 py-8">
+      <Helmet>
+        <title>Sign Up</title>
+      </Helmet>
       <div className="flex flex-col max-w-md md:w-9/12 p-6 rounded-md sm:p-10 bg-slate-100 dark:bg-slate-300 text-gray-900">
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold">Sign Up</h1>

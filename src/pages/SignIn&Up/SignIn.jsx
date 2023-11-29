@@ -6,6 +6,7 @@ import {ImSpinner9} from "react-icons/im";
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../providers/AuthProvider';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const SignIn = () => {
     const { userLogIn, loading, setLoading, resetPassword, googleSignIn } =
@@ -70,6 +71,9 @@ const SignIn = () => {
 
     return (
       <div className="flex justify-center items-center min-h-screen dark:bg-gray-800 bg-slate-200">
+        <Helmet>
+          <title>Sign In</title>
+        </Helmet>
         <div className="flex flex-col max-w-md md:w-9/12  p-6 rounded-md sm:p-10 dark:bg-gray-300 bg-slate-100 text-gray-900">
           <div className="mb-8 text-center">
             <h1 className="my-3 text-4xl font-bold">Sign In</h1>

@@ -8,7 +8,7 @@ const PrivateRoute = ({children}) => {
     const location = useLocation();
 
     if(loading){
-        return <Loader/>
+        return <Loader height={'h-screen'}/>
     }
 
     if(user){

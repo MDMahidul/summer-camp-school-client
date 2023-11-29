@@ -26,6 +26,7 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 import MyClassDetails from "../pages/Dashboard/MyClasses/MyClassDetails";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import ClassEnrolled from "../pages/Dashboard/ManageClasses/ClassEnrolled";
+import MyCourseStudents from "../pages/Dashboard/MyClasses/MyCourseStudents";
 
 const router = createBrowserRouter([
   {
@@ -98,7 +99,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/classenrolled/:id",
+        path: "/dashboard/manageclasses/students/:id",
         element: (
           <AdminRoute>
             <ClassEnrolled />
@@ -153,6 +154,15 @@ const router = createBrowserRouter([
             <MyClasses />
           </InstructorRoute>
         ),
+      },
+      {
+        path: "/dashboard/myclasses/students/:id",
+        element: (
+          <InstructorRoute>
+            <MyCourseStudents />
+          </InstructorRoute>
+        ),
+        loader: ({ params }) => getCourse(params.id),
       },
       {
         path: "/dashboard/myclasses/:id",

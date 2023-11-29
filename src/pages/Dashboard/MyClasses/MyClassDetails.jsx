@@ -9,6 +9,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { deleteCourse } from "../../../api/courses";
 import toast from "react-hot-toast";
 import DeleteModal from "../../../components/Modal/DeleteModal";
+import { Helmet } from "react-helmet-async";
 
 const MyClassDetails = () => {
     const {user} = useContext(AuthContext);
@@ -60,6 +61,9 @@ const MyClassDetails = () => {
 
   return (
     <div className="container mx-auto px-4 sm:px-8 py-8">
+      <Helmet>
+        <title>{course.course_name}</title>
+      </Helmet>
       <DashboardHeader title={"Course Details"}></DashboardHeader>
       <FadeInAnimation>
         <div className="flex flex-col md:flex-row justify-evenly items-center md:mt-5 gap-5">

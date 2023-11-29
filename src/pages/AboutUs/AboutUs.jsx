@@ -4,10 +4,14 @@ import Container from "../../Components/Container/Container";
 import SectionHeader from "../../components/SectionHeader/SectionHeader";
 import logo from "../../assets/logo/rlogo.png";
 import FadeInAnimation from "../../components/FadeInAnimation/FadeInAnimation";
+import { Helmet } from "react-helmet-async";
 
 const AboutUs = () => {
   return (
     <div className="dark:bg-gray-800 pb-10 lg:pb-20 md:pt-20" id="instructors">
+      <Helmet>
+        <title>About Us</title>
+      </Helmet>
       <ScrollPageTop />
       <Container>
         <SectionHeader heading={"About NSA"}></SectionHeader>
@@ -42,8 +46,8 @@ const AboutUs = () => {
                 nurturing talent, we provide a comprehensive range of sports
                 courses tailored to individuals of all ages and skill levels.
               </p>
-            <br />
-            <br />
+              <br />
+              <br />
               <p>
                 <span className="font-bold text-xl mb-2">Our Vision:</span>
                 <br /> Our vision is to be a premier sports academy that not

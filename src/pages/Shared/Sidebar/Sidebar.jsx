@@ -67,7 +67,7 @@ const Sidebar = () => {
               <Link to="/dashboard">
                 <img
                   className="object-cover w-20 h-20 mx-2 rounded-full"
-                  src={user?.photoURL}
+                  src={!user?.photoURL ? user?.photoURL : userData.image}
                   alt="avatar"
                   referrerPolicy="no-referrer"
                 />

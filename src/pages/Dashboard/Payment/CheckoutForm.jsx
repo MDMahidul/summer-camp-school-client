@@ -67,11 +67,13 @@ const CheckoutForm = ({ totalPrice, cart,refetch }) => {
           },
         },
       });
+
     if (confirmError) {
       console.log(confirmError);
       setCardError(confirmError.message);
-    } else {
       setProcessing(false);
+    } else {
+      //setProcessing(false);
 
       if (paymentIntent.status === "succeeded") {
         setTransactionId(paymentIntent.id);
@@ -94,7 +96,7 @@ const CheckoutForm = ({ totalPrice, cart,refetch }) => {
             itemsName: item.courseName,
             itemsImage: item.image,
             Instructor: item.instructorName,
-            InstructorEmail: item.email,
+            InstructorEmail: item.instructorEmail,
           })),
         };
         axiosSecure.post("/payment",payment)
@@ -103,6 +105,7 @@ const CheckoutForm = ({ totalPrice, cart,refetch }) => {
                 toast.success("Payment Successful! 🎉");
                 refetch();
                 navigate("/dashboard/enrolledclasses");
+                setProcessing(false)
               }
         }).catch(error=>{
             setCardError(error.message);

@@ -6,6 +6,7 @@ import SectionHeader from "../../../components/SectionHeader/SectionHeader";
 import FadeInAnimation from "../../../components/FadeInAnimation/FadeInAnimation";
 import CourseCard from "./CourseCard";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Courses = () => {
   /* get all course data */
@@ -32,11 +33,12 @@ const Courses = () => {
         </div>
         <FadeInAnimation custom={1}>
           <div className="text-center pb-10 md:pb-0">
-              <Link to="/courses"
-                className="btn  bg-amber-500 custom-btn mt-8 text-white "
-              >
-                See More
-              </Link>
+            <Link
+              to="/courses"
+              className="btn  bg-amber-500 custom-btn mt-8 text-white "
+            >
+              See More
+            </Link>
           </div>
         </FadeInAnimation>
       </Container>

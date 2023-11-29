@@ -10,7 +10,7 @@ const StudentRoue = ({children}) => {
       const location = useLocation();
 
       if (loading || checkStudentLoading) {
-        return <Loader/>;
+        return <Loader height={'h-screen'}/>;
       }
       if (user && checkStudent) {
         return children;

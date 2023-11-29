@@ -1,16 +1,24 @@
 import { useContext, useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import Container from '../../components/Container/Container';
 import SectionHeader from '../../components/SectionHeader/SectionHeader';
 import FadeInAnimation from '../../components/FadeInAnimation/FadeInAnimation';
 import ScrollPageTop from '../../components/ScrollPageTop/ScrollPageTop';
 import { AuthContext } from '../../providers/AuthProvider';
+import useCart from '../../hooks/useCart';
+import usePayment from '../../hooks/usePayment';
+import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const InstructorDetails = () => {
-  const {role} = useContext(AuthContext);
+  const {user,role} = useContext(AuthContext);
   //console.log(role);
   const instructorData = useLoaderData();
   const [courses, setCourses] = useState([]);
+  const [cart, refetch] = useCart();
+  const [payments] = usePayment();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   /* get the instructor course data from db */
   useEffect(() => {
@@ -21,9 +29,56 @@ const InstructorDetails = () => {
       });
   }, [instructorData.email]);
 
+    const isCourseInCart =
+      cart.some((item) => item.courseName) ===
+      courses.some((course) => course.course_name);
+
+    const isCourseEnrolled = payments.some((payment) =>
+      payment.items.some((item) =>
+        courses.some((course) => course.course_name === item.itemsName)
+      )
+    );
+
+    const handleAddToCart = (course) => {
+      if (user && user?.email) {
+        const cardtData = {
+          courseId: course._id,
+          courseName: course.course_name,
+          image: course.image,
+          price: course.price,
+          email: user?.email,
+          instructorName: course?.instructor_name,
+          instructorEmail: course?.email,
+        };
+        fetch(`${import.meta.env.VITE_API_URL}/carts`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(cardtData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              refetch();
+              toast.success("Course Added To Cart Successfully!!!");
+            }
+          })
+          .catch((error) => {
+            toast.error(error.message);
+          });
+      } else {
+        toast.error("Please Sign In First!!!");
+        navigate("/signin", { state: { from: location } });
+      }
+    };
+
 
   return (
     <div className="dark:bg-gray-800 pb-10 lg:pb-20 md:pt-20" id="instructors">
+      <Helmet>
+        <title>Instructors Details</title>
+      </Helmet>
       <ScrollPageTop />
       <SectionHeader heading={"Instructor Details"}></SectionHeader>
       <Container>
@@ -123,8 +178,11 @@ const InstructorDetails = () => {
                             disabled={
                               course?.seats - course?.enrolled <= 0 ||
                               role === "Admin" ||
-                              role === "Instructor"
+                              role === "Instructor" ||
+                              isCourseInCart ||
+                              isCourseEnrolled
                             }
+                            onClick={() => handleAddToCart(course)}
                           >
                             Add To Cart
                           </button>

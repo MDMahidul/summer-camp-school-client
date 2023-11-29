@@ -9,20 +9,24 @@ import InstructorsList from '../Instructor/InstructorsList';
 import ScrollPageTop from '../../../components/ScrollPageTop/ScrollPageTop';
 import Courses from '../Courses/Courses';
 import About from '../About/About';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
     return (
       <div>
-        <ScrollPageTop/>
-        <Banner/>
-        <Courses/>
-        <Facilities/>
-        <InstructorsList/>
-        <About/>
-        <Testimonials/>
-        <Contact/>
-        <Partners/>
-        <ScrollUp/>
+        <Helmet>
+          <title>Home</title>
+        </Helmet>
+        <ScrollPageTop />
+        <Banner />
+        <Courses />
+        <Facilities />
+        <InstructorsList />
+        <About />
+        <Testimonials />
+        <Contact />
+        <Partners />
+        <ScrollUp />
       </div>
     );
 };

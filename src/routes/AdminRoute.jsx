@@ -10,7 +10,7 @@ const AdminRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading || checkAdminLoading) {
-    return <Loader />;
+    return <Loader height={'h-screen'} />;
   }
   if (user && checkAdmin) {
     return children;

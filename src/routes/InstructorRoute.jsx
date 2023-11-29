@@ -10,7 +10,7 @@ const InstructorRoute = ({children}) => {
     const location = useLocation();
 
     if(loading || checkAdminLoading){
-        return <Loader/>
+        return <Loader height={'h-screen'}/>
     }
     if(user && checkInstructor){
         return children;
