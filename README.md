@@ -1,4 +1,3 @@
-![Screenshot](/src/assets/logo/logo.png)
 # Name Of The Site: Northern Sports Academy 
 
 ## Features of the project:
