@@ -22,7 +22,8 @@ const UserProfile = () => {
       return res.data;
     }
   })
-
+console.log(user.email);
+console.log(userData);
   return (
     <div className="container mx-auto px-4 sm:px-8 py-8 ">
       <Helmet>

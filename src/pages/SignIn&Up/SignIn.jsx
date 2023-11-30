@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from '../../providers/AuthProvider';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet-async';
+import { addUser } from '../../api/users';
 
 const SignIn = () => {
     const { userLogIn, loading, setLoading, resetPassword, googleSignIn } =
@@ -57,17 +58,36 @@ const SignIn = () => {
         })
     }
 
-    const handleGoogleSignIn=()=>{
-      googleSignIn().then(result=>{
-        console.log(result.user);
-        toast.success('Login Successfully !')
-        navigate(from, { replace: true });
-      }).catch(err=>{
-        setLoading(false);
-        console.log(err.message);
-        toast.error(err.message);
-      })
-    }
+    const handleGoogleSignIn = () => {
+      googleSignIn()
+        .then((result) => {
+          const { user } = result;
+          console.log(result);
+          const userData = {
+            name: user?.displayName,
+            email: user?.email,
+            image: user?.photoURL,
+            role: "Student",
+          };
+
+          /* save data to db */
+          addUser(userData)
+            .then((data) => {
+              console.log(data);
+              toast.success("Login Successfully !!!");
+              navigate(from, { replace: true });
+            })
+            .catch((err) => {
+              console.log(err.message);
+              toast.error(err.message);
+            });
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log(err.message);
+          toast.error(err.message);
+        });
+    };
 
     return (
       <div className="flex justify-center items-center min-h-screen dark:bg-gray-800 bg-slate-200">

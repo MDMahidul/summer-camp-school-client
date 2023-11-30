@@ -97,9 +97,9 @@ const Navbar = ({ isHomePage }) => {
           <li>
             <Link to="/signin">Sign in</Link>
           </li>
-          {/* <li>
+          <li>
             <Link to="/signup">Sign Up</Link>
-          </li> */}
+          </li>
         </>
       )}
     </>

@@ -85,9 +85,27 @@ const SignUp = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
-        console.log(result.user);
-        toast.success("Login Successfully !!!");
-        navigate(from, { replace: true });
+        const {user} = result;
+
+        const userData = {
+          name: user?.displayName,
+          email: user?.email,
+          image: user?.photoURL,
+          role: "Student",
+        };
+
+        /* save data to db */
+        addUser(userData)
+          .then(data=>{
+            console.log(data);
+            toast.success("Login Successfully !!!");
+            navigate(from, { replace: true });
+          })
+          .catch(err=>{
+            console.log(err.message);
+            toast.error(err.message);
+          })
+        
       })
       .catch((err) => {
         setLoading(false);

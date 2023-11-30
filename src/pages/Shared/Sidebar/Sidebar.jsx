@@ -73,7 +73,7 @@ const Sidebar = () => {
                 />
               </Link>
               <Link to="/dashboard">
-                <h4 className="mx-2 mt-2 font-medium text-gray-800  hover:underline">
+                <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-white  hover:underline">
                   {user?.displayName}
                 </h4>
               </Link>
