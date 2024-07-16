@@ -62,7 +62,7 @@ const SignUp = () => {
                   toast.success("Signup Successfully !!!");
                   navigate("/");
                 });
-              })
+              }) 
               .catch((err) => {
                 setLoading(false);
                 console.log(err.message);
@@ -181,6 +181,7 @@ const SignUp = () => {
                 id="phone"
                 placeholder="Enter Your Phone Number"
                 className="input_field"
+                maxLength={11}
               />
               {errors.phone && (
                 <span className="text-sm text-amber-500">

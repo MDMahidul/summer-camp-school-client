@@ -36,7 +36,7 @@
   }
   .card_effect {
     @apply transform transition-all ease-in duration-300;
-  }
+  } 
   .p_des {
     @apply font-medium;
   }

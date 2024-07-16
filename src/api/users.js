@@ -2,7 +2,7 @@
 export const addUser = async (user) => {
   const response = await fetch(
     `${import.meta.env.VITE_API_URL}/users/${user?.email}`,
-    {
+    { 
       method: "POST",
       headers: {
         "content-type": "application/json",

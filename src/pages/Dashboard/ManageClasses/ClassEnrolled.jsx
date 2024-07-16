@@ -76,8 +76,11 @@ const ClassEnrolled = () => {
           </div>
         </FadeInAnimation>
       ) : (
+        <FadeInAnimation>
           <EmptyData message={"No Student has enrolled yet."}></EmptyData>
+        </FadeInAnimation>
       )}
+      <FadeInAnimation>
         <div className="text-center py-4">
           <Link
             to="/dashboard/manageclasses"
@@ -86,6 +89,7 @@ const ClassEnrolled = () => {
             Go Back
           </Link>
         </div>
+      </FadeInAnimation>
     </div>
   );
 };

@@ -1,12 +1,10 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import Container from "../../../Components/Container/Container";
 import SectionHeader from "../../../components/SectionHeader/SectionHeader";
 import FadeInAnimation from "../../../components/FadeInAnimation/FadeInAnimation";
 import CourseCard from "./CourseCard";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 
 const Courses = () => {
   /* get all course data */

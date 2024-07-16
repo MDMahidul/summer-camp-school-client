@@ -23,6 +23,19 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [role, setRole] = useState(null);
 
+  /* control theme */
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    /* store theme mode in local storage */
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   useEffect(() => {
     if (user) {
       getUser(user.email).then((data) => {
@@ -100,7 +113,7 @@ const AuthProvider = ({ children }) => {
     updateUserProfile,
     resetPassword,
     role,
-    setRole,
+    setRole,theme,setTheme
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

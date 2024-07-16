@@ -11,10 +11,10 @@ import ActiveLink from '../../../components/ActiveLink/ActiveLink';
 import useCart from '../../../hooks/useCart';
 
 const Navbar = ({ isHomePage }) => {
-  const { user,role, logOut } = useContext(AuthContext);
+  const { user,role, logOut,theme,setTheme } = useContext(AuthContext);
   /* for scrolling progress  */
   const completion = useReadingProgress();
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  /* const [theme, setTheme] = useState(localStorage.getItem("theme") || "light"); */
   const [navbarBg, setNavbarBg] = useState("transparent");
   const [cart] = useCart();
 
@@ -32,16 +32,16 @@ const Navbar = ({ isHomePage }) => {
   }, []);
 
   /* control dark and night mode */
-  useEffect(() => {
+  /* useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
 
-    /* store theme mode in local storage */
+    //store theme mode in local storage
     localStorage.setItem("theme", theme);
-  }, [theme]);
+  }, [theme]); */
 
   const navOptions = (
     <>

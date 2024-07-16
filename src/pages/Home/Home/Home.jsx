@@ -25,7 +25,7 @@ const Home = () => {
         <About />
         <Testimonials />
         <Contact />
-        <Partners />
+        {/* <Partners /> */}
         <ScrollUp />
       </div>
     );
